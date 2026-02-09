@@ -1,26 +1,24 @@
-import bisect
-from collections import defaultdict
+from collections import deque
 
-n, m, y0, y1 = map(int, input().split())
-mice = list(map(int, input().split()))
-cheeses = list(map(int, input().split()))
-mice.sort()
-cheeses.sort()
-
-dy = abs(y0 - y1)
-
-if m == 0:
-    print(n)
+s = input().strip()
+n = len(s)
+if n == 0:
+    print(0)
     exit()
 
-unique = [[] for _ in range(m)]
-tie_groups = defaultdict(list)
+prev = [i - 1 for i in range(n)]
+next = [i + 1 if i < n - 1 else -1 for i in range(n)]
+current_queue = deque()
 
-for x in mice:
-    j = bisect.bisect_left(cheeses, x)
-    candidates = []
-    if j > 0:
-        candidates.append(j-1)
-    if j < m:
-        candidates.append(j)
-    min_dist_sq = 
+for i in range(n):
+    left = prev[i]
+    right = next[i]
+    has_diff = False
+    if left != -1 and s[left] != s[i]:
+        has_diff = True
+    if not has_diff and right != -1 and s[right] != s[i]:
+        has_diff = True
+    if has_diff:
+        current_queue.append(i)
+
+deleted = [False
