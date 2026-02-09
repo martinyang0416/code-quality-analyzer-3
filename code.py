@@ -1,15 +1,17 @@
-n = int(input())
-cards = set()
-
-for _ in range(n):
-    s, r = input().split()
-    cards.add((s, int(r)))
-
-missing = []
-for suit in ['S', 'H', 'C', 'D']:
-    for rank in range(1, 14):
-        if (suit, rank) not in cards:
-            missing.append(f"{suit} {rank}")
-
-for card in missing:
-    print(card)
+def main():
+    import sys
+    input = sys.stdin.read().split('\n')
+    idx = 0
+    T = int(input[idx].strip())
+    idx += 1
+    for _ in range(T):
+        # Read N, K, initial Answer
+        while idx < len(input) and input[idx].strip() == '':
+            idx += 1
+        n, k, ans = map(int, input[idx].split())
+        idx += 1
+        # Read array A
+        while idx < len(input) and input[idx].strip() == '':
+            idx += 1
+        a = list(map(int, input[idx].split()))
+        idx += 1
