@@ -1,19 +1,25 @@
-from collections import defaultdict
+MOD = 10**9 + 7
 
-def reorderedPowerOf2(N):
-    # Precompute the power_map once per function call (inefficient but acceptable)
-    power_map = defaultdict(set)
-    exp = 0
-    while True:
-        current_power = 2 ** exp
-        s = str(current_power)
-        length = len(s)
-        if length > 10:
-            break
-        sorted_str = ''.join(sorted(s))
-        power_map[length].add(sorted_str)
-        exp += 1
+def sumSubarrayMins(A):
+    n = len(A)
+    PLE = [-1] * n
+    NLE = [n] * n
+    stack = []
     
-    s = str(N)
-    sorted_n = ''.join(sorted(s))
-    length
+    for i in range(n):
+        while stack and A[stack[-1]] >= A[i]:
+            stack.pop()
+        if stack:
+            PLE[i] = stack[-1]
+        stack.append(i)
+    
+    stack = []
+    for i in range(n-1, -1, -1):
+        while stack and A[stack[-1]] > A[i]:
+            stack.pop()
+        if stack:
+            NLE[i] = stack[-1]
+        stack.append(i)
+    
+    total = 0
+    for
