@@ -1,25 +1,20 @@
-from collections import deque
+s = input().strip()
 
-def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    idx = 0
-    N = int(data[idx])
-    idx += 1
-    u = int(data[idx])
-    idx += 1
-    v = int(data[idx])
-    idx += 1
-    
-    adj = [[] for _ in range(N+1)]
-    for _ in range(N-1):
-        a = int(data[idx])
-        idx += 1
-        b = int(data[idx])
-        idx += 1
-        adj[a].append(b)
-        adj[b].append(a)
-    
-    # Compute d_v and parent using BFS from v
-    d_v = [-1]
+mask = 0
+dp = {0: 0}
+
+for char in s:
+    c = ord(char) - ord('a')
+    mask ^= 1 << c
+    min_val = float('inf')
+    # Check current mask
+    if mask in dp:
+        min_val = dp[mask] + 1
+    # Check all possible masks by flipping each bit
+    for i in range(26):
+        m = mask ^ (1 << i)
+        current = dp.get(m, float('inf'))
+        if current + 1 < min_val:
+            min_val = current + 1
+    # Update the current mask's value if needed
+    current_mask_val = dp.get(
