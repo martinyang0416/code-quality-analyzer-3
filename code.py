@@ -1,20 +1,15 @@
-def numSteps(s):
-    def add_one(s):
-        s_list = list(s)
-        carry = 1
-        i = len(s_list) - 1
-        while i >= 0 and carry:
-            total = int(s_list[i]) + carry
-            if total == 2:
-                s_list[i] = '0'
-                carry = 1
-            else:
-                s_list[i] = '1'
-                carry = 0
-            i -= 1
-        if carry:
-            s_list.insert(0, '1')
-        return ''.join(s_list)
-    
-    def count_trailing_zeros(s):
-        count = 
+import heapq
+
+def mincostToHireWorkers(quality, wage, K):
+    workers = sorted((w / q, q) for q, w in zip(quality, wage))
+    heap = []
+    sum_q = 0
+    res = float('inf')
+    for ratio, q in workers:
+        heapq.heappush(heap, -q)
+        sum_q += q
+        if len(heap) > K:
+            sum_q += heapq.heappop(heap)  # Pop the largest quality (stored as negative)
+        if len(heap) == K:
+            res = min(res, ratio * sum_q)
+    return res
