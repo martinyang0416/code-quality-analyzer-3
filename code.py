@@ -1,17 +1,22 @@
-def main():
-    import sys
-    A = "What are you doing while sending \""
-    B = '"? Are you busy? Will you send "'
-    C = '"?'
-    f0 = "What are you doing at the end of the world? Are you busy? Will you save us?"
-
-    q = int(sys.stdin.readline())
-    output = []
-    for _ in range(q):
-        n, k = map(int, sys.stdin.readline().split())
-        if k < 1:
-            output.append('.')
-            continue
-        # Check if k > L_n
-        if n > 60:
-            # L_n is way larger than 1e1
+def putaway(A, B, T, X, Y, W, S):
+    if A == 0 and B == 0:
+        return -1  # according to problem constraints, this case won't occur
+    
+    # Compute maximum values for weak and small robots
+    maxX = -float('inf')
+    if A > 0:
+        maxX = max(X)
+    maxY = -float('inf')
+    if B > 0:
+        maxY = max(Y)
+    
+    S_only = 0
+    W_only = 0
+    both = 0
+    valid = True
+    
+    for i in range(T):
+        w = W[i]
+        s = S[i]
+        cw = (A != 0) and (w < maxX)
+        cs = (B !
