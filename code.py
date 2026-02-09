@@ -1,9 +1,28 @@
 n = int(input())
-heights = list(map(int, input().split()))
-cores = []
-for h in heights:
-    core = h
-    while core % 2 == 0:
-        core //= 2
-    cores.append(core)
-print("YES" if all(c == cores[0] for c in cores) else "NO")
+prefixes = []
+suffixes = []
+max_streaks = []
+is_full_list = []
+
+for _ in range(n):
+    s = input().strip()
+    # Compute prefix
+    prefix = 0
+    for c in s:
+        if c == 'C':
+            prefix += 1
+        else:
+            break
+    prefixes.append(prefix)
+    
+    # Compute suffix
+    suffix = 0
+    for c in reversed(s):
+        if c == 'C':
+            suffix += 1
+        else:
+            break
+    suffixes.append(suffix)
+    
+    # Compute max streak
+    max_streak = 
