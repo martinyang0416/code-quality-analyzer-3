@@ -1,20 +1,18 @@
+import bisect
+
 def main():
     import sys
     s = sys.stdin.read().strip()
-    target = ['b', 'e', 's', 's', 'i', 'e']
-    n = len(target)
-    dp = [0] * (n + 1)
-    dp[0] = 1
-    total = 0
-
-    for c in s:
-        new_dp = dp.copy()
-        for i in range(n, 0, -1):
-            if c == target[i-1]:
-                new_dp[i] += new_dp[i-1]
-        dp = new_dp
-        total += dp[n]
-    print(total)
-
-if __name__ == "__main__":
-    main()
+    n = len(s)
+    
+    # Initialize prefix arrays
+    prefix_b = [0] * (n + 1)
+    prefix_e = [0] * (n + 1)
+    prefix_s = [0] * (n + 1)
+    prefix_i = [0] * (n + 1)
+    
+    for i in range(n):
+        prefix_b[i+1] = prefix_b[i] + (1 if s[i] == 'b' else 0)
+        prefix_e[i+1] = prefix_e[i] + (1 if s[i] == 'e' else 0)
+        prefix_s[i+1] = prefix_s[i] + (1 if s[i] == 's' else 0)
+        prefix_i[i+1] = prefix_i[i] + 
