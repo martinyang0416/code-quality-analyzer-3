@@ -1,11 +1,4 @@
-import sys
-
-def main():
-    n = int(sys.stdin.readline())
-    for _ in range(n):
-        a, b = map(int, sys.stdin.readline().split())
-        m = min(a, b)
-        print(m, m)
-
-if __name__ == "__main__":
-    main()
+n, m = map(int, input().split())
+s = list(map(int, input().split()))
+s.sort()
+print(sum(s))
