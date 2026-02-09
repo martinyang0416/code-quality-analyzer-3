@@ -1,19 +1,16 @@
-def maxSumDivThree(nums):
-    total = sum(nums)
-    remainder = total % 3
-    if remainder == 0:
-        return total
-    
-    mod1 = sorted(num for num in nums if num % 3 == 1)
-    mod2 = sorted(num for num in nums if num % 3 == 2)
-    
-    possible = []
-    if remainder == 1:
-        if mod1:
-            possible.append(mod1[0])
-        if len(mod2) >= 2:
-            possible.append(mod2[0] + mod2[1])
-    else:  # remainder == 2
-        if mod2:
-            possible.append(mod2[0])
-        if 
+from collections import deque
+from typing import List
+
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        word_set = set(wordList)
+        if endWord not in word_set:
+            return 0
+        
+        queue = deque([(beginWord, 1)])
+        # Remove beginWord from the set if present to avoid revisiting
+        if beginWord in word_set:
+            word_set.remove(beginWord)
+        
+        while queue:
+            current_word, leve
