@@ -1,21 +1,16 @@
-t = int(input())
-for _ in range(t):
-    s = input().strip()
-    k = int(input())
-    
-    # Generate all unique substrings
-    substrs = set()
+def main():
+    import sys
+    s = sys.stdin.readline().strip()
     n = len(s)
+    # Initialize DP table where dp[i][j] indicates if s[i..j] is a palindrome
+    dp = [[0] * n for _ in range(n)]
     for i in range(n):
-        for j in range(i + 1, n + 1):
-            substr = s[i:j]
-            substrs.add(substr)
-    
-    # Sort substrings in reverse lexicographical order
-    substr_list = sorted(substrs, reverse=True)
-    
-    # Concatenate all substrings
-    concatenated = ''.join(substr_list)
-    
-    # Get the k-th character
- 
+        dp[i][i] = 1
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            if s[i] == s[j]:
+                if length == 2 or dp[i+1][j-1]:
+                    dp[i][j] = 1
+            else:
+                dp[i][j] = 0
