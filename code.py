@@ -1,18 +1,9 @@
-import sys
-
-def main():
-    input = sys.stdin.read
-    data = input().split()
-    T = int(data[0])
-    index = 1
-    for _ in range(T):
-        a = int(data[index])
-        b = int(data[index+1])
-        c = int(data[index+2])
-        index += 3
-        k = (c - b) // a
-        x = k * a + b
-        print(x)
-        
-if __name__ == "__main__":
-    main()
+mod = 15746
+n = int(input())
+if n == 0:
+    print(1 % mod)
+else:
+    a, b = 1, 1
+    for i in range(2, n + 1):
+        a, b = b, (a + b) % mod
+    print(b)
