@@ -1,28 +1,18 @@
-class TrieNode:
-    __slots__ = ['children']
-    def __init__(self):
-        self.children = [None, None]
+import sys
+import bisect
+from collections import deque
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    C = int(input[idx])
-    idx += 1
-    N = int(input[idx])
-    idx += 1
+    sys.setrecursionlimit(1 << 25)
+    N = int(sys.stdin.readline())
+    s = sys.stdin.readline().strip()
+    adj = [[] for _ in range(N + 1)]  # 1-based indexing
 
-    masks = []
-    for _ in range(N):
-        s = input[idx]
-        idx += 1
-        mask = 0
-        for c in s:
-            mask <<= 1
-            if c == 'H':
-                mask |= 1
-        masks.append(mask)
+    for _ in range(N - 1):
+        a, b = map(int, sys.stdin.readline().split())
+        adj[a].append(b)
+        adj[b].append(a)
 
-    root = TrieNode()
-
-  
+    # Step 1: Find all regions (connected components of required nodes)
+    region_id = [-1] * (N + 1)  # nodes are 1-based
+    regions 
