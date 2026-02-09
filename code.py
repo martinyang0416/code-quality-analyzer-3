@@ -1,3 +1,14 @@
-Okay, so I have this problem where I need to find the area covered by buildings on a grid. Hmm. So the buildings form a connected region, but there might be empty spaces inside, like courtyards. The goal is to calculate the total area of the buildings. 
+n = int(input())
+degrees = [0] * (n + 1)
+for _ in range(n - 1):
+    u, v = map(int, input().split())
+    degrees[u] += 1
+    degrees[v] += 1
 
-Wait, wait. So each building is a single cell on the grid. The area is the total number of cells occupied by buildings. But wait, maybe the problem is about the actual outline or the connected region including the empty spaces? Or is it just the
+s = 0
+for i in range(1, n + 1):
+    d = degrees[i]
+    s += d * (d - 1) // 2
+
+total = (n - 1) + s
+print(total)
