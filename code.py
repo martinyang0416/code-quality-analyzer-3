@@ -1,27 +1,21 @@
-n = int(input())
-a = list(map(int, input().split()))
+import sys
+from collections import deque
 
-if n == 1:
-    print("1 1")
-    print(-a[0])
-    print("1 1")
-    print(0)
-    print("1 1")
-    print(0)
-else:
-    # Operation 1: zero the first element
-    print("1 1")
-    print(-a[0])
-    a[0] = 0
-
-    # Operation 2: handle elements 2 to n
-    print(f"2 {n}")
-    ks = []
-    add_op2 = []
-    for i in range(1, n):
-        k = a[i] % n
-        ks.append(k)
-        add_op2.append(k * (n-1))
-    print(' '.join(map(str, add_op2)))
-
-    # Operat
+def main():
+    n = int(sys.stdin.readline())
+    edges = []
+    for _ in range(n-1):
+        u, v = map(int, sys.stdin.readline().split())
+        edges.append((u, v))
+    
+    # Build adjacency list
+    adj = [[] for _ in range(n+1)]
+    for u, v in edges:
+        adj[u].append(v)
+        adj[v].append(u)
+    
+    # Find connected components using BFS
+    visited = [False] * (n + 1)
+    components = []
+    for i in range(1, n + 1):
+        if not visit
