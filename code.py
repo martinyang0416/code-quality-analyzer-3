@@ -1,21 +1,21 @@
-MOD = 10**9 + 7
-inv2 = 500000004  # Modular inverse of 2 mod 1e9+7
+import sys
 
 def main():
-    import sys
     input = sys.stdin.read().split()
     ptr = 0
-    T = int(input[ptr])
-    ptr +=1
-    for _ in range(T):
-        n = int(input[ptr])
-        ptr +=1
-        P = list(map(int, input[ptr:ptr+n]))
-        ptr +=n
-        A = list(map(int, input[ptr:ptr+n]))
-        ptr +=n
-        B = list(map(int, input[ptr:ptr+n]))
-        ptr +=n
-        
-        all_zero = all(b == 0 for b in B)
-        if all_zero
+    N, Q = int(input[ptr]), int(input[ptr+1])
+    ptr +=2
+    A = list(map(int, input[ptr:ptr+N]))
+    ptr += N
+    # Using 1-based indexing
+    A = [0] + A  # A[1..N]
+    next = [0]*(N+2)  # next[1..N]
+
+    # Precompute next array
+    for i in range(1, N+1):
+        next[i] = i
+        max_j = min(i + 100, N)
+        for j in range(i+1, max_j +1):
+            if A[j] > A[i]:
+                next[i] = j
+                brea
