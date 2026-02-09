@@ -1,18 +1,18 @@
 import sys
-import bisect
+from sys import stdin
 from collections import deque
 
 def main():
     sys.setrecursionlimit(1 << 25)
-    N = int(sys.stdin.readline())
-    s = sys.stdin.readline().strip()
-    adj = [[] for _ in range(N + 1)]  # 1-based indexing
-
-    for _ in range(N - 1):
-        a, b = map(int, sys.stdin.readline().split())
+    N = int(stdin.readline())
+    s = stdin.readline().strip()
+    adj = [[] for _ in range(N+1)]
+    for _ in range(N-1):
+        a, b = map(int, stdin.readline().split())
         adj[a].append(b)
         adj[b].append(a)
-
-    # Step 1: Find all regions (connected components of required nodes)
-    region_id = [-1] * (N + 1)  # nodes are 1-based
-    regions 
+    
+    cow_nodes = [i for i in range(1, N+1) if s[i-1] == '1']
+    total_cow = len(cow_nodes)
+    if total_cow == 0:
+        print(0)  # Problem states there is at 
