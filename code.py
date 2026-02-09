@@ -1,21 +1,21 @@
-def max_substring(s, target, q):
-    left = 0
-    max_len = 0
-    count = 0
-    for right in range(len(s)):
-        if s[right] != target:
-            count += 1
-        while count > q:
-            if s[left] != target:
-                count -= 1
-            left += 1
-        current = right - left + 1
-        if current > max_len:
-            max_len = current
-    return max_len
-
 def main():
     import sys
-    n, q = map(int, sys.stdin.readline().split())
-    s = sys.stdin.readline().strip()
- 
+    input = sys.stdin.read().split()
+    ptr = 0
+    N = int(input[ptr])
+    ptr += 1
+    Q = int(input[ptr])
+    ptr += 1
+
+    edges = []
+    for _ in range(N - 1):
+        u = int(input[ptr])
+        ptr += 1
+        v = int(input[ptr])
+        ptr += 1
+        s = int(input[ptr])
+        ptr += 1
+        edges.append((-s, u, v))  # Use negative to sort in ascending and reverse later
+
+    edges.sort()
+    edges = [(-e[0], e[1], e[2]) for e in edges]  # Convert back t
