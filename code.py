@@ -1,24 +1,27 @@
-import bisect
-import math
-from collections import defaultdict
+n = int(input())
+b = list(map(int, input().split()))
+a = list(map(int, input().split()))
 
-def reverse_num(x):
-    return int(str(x)[::-1].lstrip('0') or '0')
+# Convert to 1-based indexing
+b = [0] + b
+a = [0] + a
 
-maxx, maxy, w = map(int, input().split())
+x = [0] * (n + 1)
+k = [0] * (n + 1)
 
-# Preprocess a_ratios and b_ratios
-a_ratios = defaultdict(list)
-for a in range(1, maxx + 1):
-    rev_a = reverse_num(a)
-    d = math.gcd(a, rev_a)
-    p = a // d
-    q = rev_a // d
-    a_ratios[(p, q)].append(a)
+for i in range(2, n + 1):
+    xi, ki = map(int, input().split())
+    x[i] = xi
+    k[i] = ki
 
-for key in a_ratios:
-    a_ratios[key].sort()
-
-b_ratios = defaultdict(list)
-for b in range(1, maxy + 1):
-    rev
+for i in range(n, 0, -1):
+    if i == 1:
+        if a[i] > b[i]:
+            print("NO")
+            exit()
+    else:
+        if b[i] >= a[i]:
+            surplus = b[i] - a[i]
+            b[x[i]] += surplus
+        else:
+  
