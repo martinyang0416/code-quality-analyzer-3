@@ -1,14 +1,23 @@
+import heapq
 import sys
 
-data = [line.strip() for line in sys.stdin if line.strip()]
-ptr = 0
-T = int(data[ptr])
-ptr += 1
-for _ in range(T):
-    N = int(data[ptr])
-    ptr += 1
-    names = data[ptr:ptr + N]
-    ptr += N
-    unique_sorted = sorted(set(names))
-    for name in unique_sorted:
-        print(name)
+def main():
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx +=1
+    for _ in range(T):
+        N = int(input[idx])
+        idx +=1
+        left = []
+        right = []
+        for __ in range(N):
+            K = int(input[idx])
+            L = int(input[idx+1])
+            R = int(input[idx+2])
+            idx +=3
+            if L >= R:
+                left.append( (K, L, R) )
+            else:
+                right.append( (K, L, R) )
+  
