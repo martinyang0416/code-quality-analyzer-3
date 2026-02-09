@@ -1,19 +1,19 @@
+from collections import deque
+import sys
+
 def main():
-    import sys
-    title = sys.stdin.readline().strip()
-    title_upper = title.upper()
+    r, c = map(int, sys.stdin.readline().split())
+    grid = []
+    for _ in range(r):
+        row = list(sys.stdin.readline().strip())
+        grid.append(row)
     
-    # Define the groups based on traditional phone keypad layout
-    groups = {
-        '2': 'ABC',
-        '3': 'DEF',
-        '4': 'GHI',
-        '5': 'JKL',
-        '6': 'MNO',
-        '7': 'PQRS',
-        '8': 'TUV',
-        '9': 'WXYZ'
-    }
+    visited = [[False for _ in range(c)] for _ in range(r)]
+    count = 0
     
-    # Create a mapping from each character to its corresponding number
-    mapping = {char: key for key, value in groups.items() for char in va
+    for i in range(r):
+        for j in range(c):
+            if grid[i][j] == 'L' and not visited[i][j]:
+                # BFS to mark all connected land cells
+                queue = deque()
+        
