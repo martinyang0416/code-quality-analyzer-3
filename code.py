@@ -1,19 +1,28 @@
-import sys
+n = int(input())
+a = list(map(int, input().split()))
 
-def main():
-    t = int(sys.stdin.readline())
-    for _ in range(t):
-        n = int(sys.stdin.readline())
-        a = list(map(int, sys.stdin.readline().split()))
-        s = [(i + x) % n for i, x in enumerate(a)]
-        freq = [0] * n
-        valid = True
-        for num in s:
-            if freq[num] != 0:
-                valid = False
-                break
-            freq[num] += 1
-        print("YES" if valid else "NO")
+S = [i+1 for i, val in enumerate(a) if val == 1]
+T = [i+1 for i, val in enumerate(a) if val == 0]
 
-if __name__ == "__main__":
-    main()
+S.sort()
+T.sort()
+
+m = len(S)
+k = len(T)
+
+if m == 0:
+    print(0)
+    exit()
+
+INF = 10**18
+
+prev_dp = [0] * (k + 1)
+
+for i in range(1, m + 1):
+    curr_dp = [INF] * (k + 1)
+    for j in range(1, k + 1):
+        if j < i:
+            curr_dp[j] = INF
+            continue
+        option1 = prev_dp[j-1] + abs(S[i-1] - T[j-1])
+        option2 = curr
