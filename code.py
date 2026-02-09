@@ -1,23 +1,19 @@
-from collections import Counter
-
 def main():
-    s = input().strip()
-    k = int(input())
-    
-    if not s:
-        print(0)
-        print()
-        return
-    
-    freq = Counter(s)
-    distinct = len(freq)
-    
-    if distinct <= k:
-        print(len(s))
-        print(s)
-        return
-    else:
-        # Sort by frequency descending, then take top k
-        letters = sorted(freq.items(), key=lambda x: (-x[1], x[0]))[:k]
-        selected_chars = {char for char, count in letters}
-        total
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    while True:
+        N = int(input[ptr])
+        ptr += 1
+        if N == 0:
+            break
+        files = {}  # key: I, value: (start, end, E)
+        excl_intervals = []
+        free_intervals = [(0, float('inf'))]  # managed as list of (start, end), start <= end
+
+        for _ in range(N):
+            cmd = input[ptr]
+            ptr += 1
+            if cmd == 'W':
+                I = int(input[ptr])
+          
