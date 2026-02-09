@@ -1,20 +1,26 @@
-import sys
-from collections import deque
-
-def rotate_right(s, N):
-    # Rotate the bit pattern of 's' right by 1, where 's' is an integer
-    last_bit = s & 1
-    s = (s >> 1) | (last_bit << (N - 1))
-    return s
+import heapq
 
 def main():
+    import sys
     input = sys.stdin.read().split()
-    T = int(input[0])
-    N = int(input[1])
-    index = 2
-    cases = []
-    for _ in range(T):
-        lights_str = input[index]
-        switches_str = input[index + 1]
-        index += 2
-        # Convert to integers (LSB is first char
+    idx = 0
+    N = int(input[idx])
+    idx += 1
+    M = int(input[idx])
+    idx += 1
+
+    adj = [[] for _ in range(N+1)]  # 1-based
+
+    for _ in range(M):
+        c = int(input[idx])
+        idx +=1
+        r = int(input[idx])
+        idx +=1
+        d = int(input[idx])
+        idx +=1
+        s = int(input[idx])
+        idx +=1
+        adj[c].append( (r, s, d) )
+    
+    a = list(map(int, input[idx:idx+N]))
+    idx 
