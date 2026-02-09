@@ -1,13 +1,12 @@
-from collections import Counter
-
-def canReorderDoubled(arr):
-    count = Counter(arr)
-    for x in sorted(arr, key=lambda x: abs(x)):
-        if count[x] == 0:
-            continue
-        required = 2 * x
-        if count[required] < count[x]:
-            return False
-        count[required] -= count[x]
-        count[x] = 0
-    return True
+def minAddToMakeValid(S):
+    balance = 0
+    ans = 0
+    for c in S:
+        if c == '(':
+            balance += 1
+        else:
+            balance -= 1
+            if balance < 0:
+                ans += 1
+                balance += 1
+    return ans + balance
