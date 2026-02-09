@@ -1,11 +1,12 @@
-def countTriplets(arr):
-    n = len(arr)
-    prefix_xor = [0]
-    for num in arr:
-        prefix_xor.append(prefix_xor[-1] ^ num)
-    res = 0
-    for i in range(n):
-        for k in range(i, n):
-            if prefix_xor[i] == prefix_xor[k+1]:
-                res += (k - i)
-    return res
+def singleNumber(nums):
+    result = 0
+    for i in range(32):
+        sum_bit = 0
+        for num in nums:
+            sum_bit += (num >> i) & 1
+        sum_bit %= 3
+        if sum_bit:
+            result |= (sum_bit << i)
+    if result >= (1 << 31):
+        result -= (1 << 32)
+    return result
