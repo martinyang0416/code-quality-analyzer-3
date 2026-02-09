@@ -1,22 +1,21 @@
 def putaway(A, B, T, X, Y, W, S):
-    if A == 0 and B == 0:
-        return -1  # according to problem constraints, this case won't occur
+    if T == 0:
+        return 0  # Edge case if no toys, though constraints say T >=1
     
-    # Compute maximum values for weak and small robots
-    maxX = -float('inf')
+    maxWeak = 0
     if A > 0:
-        maxX = max(X)
-    maxY = -float('inf')
+        maxWeak = max(X)
+    maxSmall = 0
     if B > 0:
-        maxY = max(Y)
+        maxSmall = max(Y)
     
-    S_only = 0
-    W_only = 0
-    both = 0
-    valid = True
+    count_only_weak = 0
+    count_only_small = 0
+    count_both = 0
     
     for i in range(T):
-        w = W[i]
-        s = S[i]
-        cw = (A != 0) and (w < maxX)
-        cs = (B !
+        can_weak = (A > 0) and (W[i] < maxWeak)
+        can_small = (B > 0) and (S[i] < maxSmall)
+        
+        if not can_weak and not can_small:
+            
