@@ -1,17 +1,21 @@
-t = int(input())
-for _ in range(t):
-    n, m = map(int, input().split())
-    day_max = {}
-    for _ in range(n):
-        d, b = map(int, input().split())
-        if d in day_max:
-            if b > day_max[d]:
-                day_max[d] = b
-        else:
-            day_max[d] = b
-    max_beauties = list(day_max.values())
-    if len(max_beauties) < 2:
-        print(0)
-    else:
-        sorted_max = sorted(max_beauties, reverse=True)
-        print(sorted_max[0] + sorted_max[1])
+n = int(input())
+a = [int(input()) for _ in range(n)]
+
+# Initialize DP table
+dp = [[0] * n for _ in range(n)]
+
+for i in range(n):
+    dp[i][i] = a[i]
+
+for length in range(2, n + 1):
+    for i in range(n - length + 1):
+        j = i + length - 1
+        max_val = 0
+        for k in range(i, j):
+            left = dp[i][k]
+            right = dp[k+1][j]
+            if left == right:
+                current = left + 1
+            else:
+                current = max(left, right)
+            if curre
