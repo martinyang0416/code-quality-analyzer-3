@@ -1,19 +1,19 @@
-n, m, k = map(int, input().split())
-islands = []
-for _ in range(n):
-    name = input().strip()
-    artifacts = []
-    for _ in range(m):
-        buy, sell, stock = map(int, input().split())
-        artifacts.append((buy, sell, stock))
-    islands.append(artifacts)
+import sys
 
-max_profit = 0
+def is_prime(n):
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    max_d = int(n ** 0.5) + 1
+    for i in range(3, max_d, 2):
+        if n % i == 0:
+            return False
+    return True
 
-for from_island in range(n):
-    for to_island in range(n):
-        if from_island == to_island:
-            continue
-        items = []
-        for artifact in range(m):
-            a_buy = islands[from_island][artifa
+t = int(sys.stdin.readline())
+for _ in range(t):
+    n = int(sys.stdin.readline())
+    print("WIN" if is_prime(n) else "LOSE")
