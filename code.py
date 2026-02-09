@@ -1,27 +1,23 @@
 import sys
-import math
-import random
 
 def main():
-    n = int(sys.stdin.readline())
-    factors = set()
-
-    def send_query(query):
-        print(query)
-        sys.stdout.flush()
-        return int(sys.stdin.readline())
-
-    def factor(m):
-        if m == 1:
-            return
-        if m in factors:
-            return
-        d = find_divisor(m)
-        if d is None:
-            factors.add(m)
-            return
-        factor(d)
-        factor(m // d)
-
-    def find_divisor(m):
-        s = se
+    input = sys.stdin.read
+    data = input().split()
+    ptr = 0
+    T = int(data[ptr])
+    ptr += 1
+    for _ in range(T):
+        n = int(data[ptr])
+        m = int(data[ptr+1])
+        ptr +=2
+        edges = []
+        for i in range(m):
+            u = int(data[ptr])
+            v = int(data[ptr+1])
+            edges.append((u, v))
+            ptr +=2
+        used = [False] * (3 * n + 2)
+        matching = []
+        for i in range(m):
+            u, v = edges[i]
+  
