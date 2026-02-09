@@ -1,20 +1,16 @@
-n = int(input())
-if n == 0:
-    print(0)
-    exit()
-a = list(map(int, input().split()))
-dp = [float('inf')] * n
-dp[0] = 1  # The first element requires one stroke
+h, w = map(int, input().split())
+grid = [input().strip() for _ in range(h)]
 
-for i in range(1, n):
-    for j in range(i, -1, -1):
-        if a[j] != a[i]:
-            break
-        if j == 0:
-            cost = 1
+# Initialize horizontal and vertical matrices
+horizontal = [[0 for _ in range(w)] for __ in range(h)]
+vertical = [[0 for _ in range(w)] for __ in range(h)]
+
+for i in range(h):
+    for j in range(w):
+        # Check for horizontal pairs
+        if j < w - 1 and grid[i][j] == '.' and grid[i][j+1] == '.':
+            horizontal[i][j] = 1
         else:
-            cost = dp[j - 1] + 1
-        if cost < dp[i]:
-            dp[i] = cost
-
-print(dp[-1])
+            horizontal[i][j] = 0
+        # Check for vertical pairs
+    
