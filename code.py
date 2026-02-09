@@ -1,24 +1,19 @@
-def main():
-    n, x, y = map(int, input().split())
-    number = list(input())
-    count = 0
-    i = 0
-    while i < y:
-        if number[-i - 1] != '0':
-            count += 1
-            number[-i - 1] = '0'
-        i += 1
-    i += 1
-    if number[-y - 1] == "0":
-        number[-y -1] = "1"
-        count += 1
-    while i < x:
-        if number[-i - 1] != '0':
-            count += 1
-            number[-i - 1] = '0'
-        i += 1
-    print(count)
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-
-
-main()
+import builtins
+import re
