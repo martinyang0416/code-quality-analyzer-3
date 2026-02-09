@@ -1,20 +1,20 @@
-import sys
-import heapq
+n = int(input())
+if n == 0:
+    print(0)
+    exit()
+a = list(map(int, input().split()))
+dp = [float('inf')] * n
+dp[0] = 1  # The first element requires one stroke
 
-def main():
-    n, m, t = map(int, sys.stdin.readline().split())
-    edges = []
-    for _ in range(m):
-        a, b, c = map(int, sys.stdin.readline().split())
-        edges.append((a, b, c))
-    d = int(sys.stdin.readline())
+for i in range(1, n):
+    for j in range(i, -1, -1):
+        if a[j] != a[i]:
+            break
+        if j == 0:
+            cost = 1
+        else:
+            cost = dp[j - 1] + 1
+        if cost < dp[i]:
+            dp[i] = cost
 
-    # Build adjacency list
-    adj = [[] for _ in range(n + 1)]
-    for a, b, c in edges:
-        adj[a].append((b, c))
-        adj[b].append((a, c))
-
-    # Dijkstra's algorithm to find shortest paths from t
-    INF = float('inf')
-    dist = [INF] 
+print(dp[-1])
