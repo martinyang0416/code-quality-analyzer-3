@@ -1,21 +1,22 @@
-n = int(input())
-a = [int(input()) for _ in range(n)]
+import math
 
-# Initialize DP table
-dp = [[0] * n for _ in range(n)]
+def is_prime(n):
+    if n <= 1:
+        return False
+    elif n == 2:
+        return True
+    elif n % 2 == 0:
+        return False
+    sqrt_n = int(math.sqrt(n)) + 1
+    for i in range(3, sqrt_n, 2):
+        if n % i == 0:
+            return False
+    return True
 
-for i in range(n):
-    dp[i][i] = a[i]
-
-for length in range(2, n + 1):
-    for i in range(n - length + 1):
-        j = i + length - 1
-        max_val = 0
-        for k in range(i, j):
-            left = dp[i][k]
-            right = dp[k+1][j]
-            if left == right:
-                current = left + 1
-            else:
-                current = max(left, right)
-            if curre
+t = int(input())
+for _ in range(t):
+    num = int(input())
+    if is_prime(num):
+        print("PRIME")
+    else:
+        print("NOT PRIME")
