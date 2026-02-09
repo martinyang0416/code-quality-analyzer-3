@@ -1,19 +1,21 @@
 MOD = 10**9 + 7
-max_pow = 10**5  # Since n can be up to 1e5, n-L can be up to 1e5 -1
-pow26 = [1] * (max_pow + 1)
+inv2 = 500000004  # Modular inverse of 2 mod 1e9+7
 
-for i in range(1, max_pow + 1):
-    pow26[i] = (pow26[i-1] * 26) % MOD
-
-T = int(input())
-for case in range(1, T+1):
-    n, m = map(int, input().split())
-    patterns = [input().strip() for _ in range(m)]
-    print(f"Case {case}:")
-    for s in patterns:
-        L = len(s)
-        if L > n:
-            print(0)
-        else:
-            e = n - L
-            res = ((n - L + 1) * pow26
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    T = int(input[ptr])
+    ptr +=1
+    for _ in range(T):
+        n = int(input[ptr])
+        ptr +=1
+        P = list(map(int, input[ptr:ptr+n]))
+        ptr +=n
+        A = list(map(int, input[ptr:ptr+n]))
+        ptr +=n
+        B = list(map(int, input[ptr:ptr+n]))
+        ptr +=n
+        
+        all_zero = all(b == 0 for b in B)
+        if all_zero
