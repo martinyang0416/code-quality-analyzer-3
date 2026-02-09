@@ -1,6 +1,27 @@
-T = int(input())
-for _ in range(T):
-    line = input().strip()
-    words = line.split()
-    reversed_words = [word[::-1].lower() for word in words]
-    print(' '.join(reversed_words))
+import sys
+import math
+import random
+
+def main():
+    n = int(sys.stdin.readline())
+    factors = set()
+
+    def send_query(query):
+        print(query)
+        sys.stdout.flush()
+        return int(sys.stdin.readline())
+
+    def factor(m):
+        if m == 1:
+            return
+        if m in factors:
+            return
+        d = find_divisor(m)
+        if d is None:
+            factors.add(m)
+            return
+        factor(d)
+        factor(m // d)
+
+    def find_divisor(m):
+        s = se
