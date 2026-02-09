@@ -1,20 +1,20 @@
-import sys
+import bisect
 
 def main():
-    sys.setrecursionlimit(1 << 25)
-    N = int(sys.stdin.readline())
-    a = list(map(int, sys.stdin.readline().split()))
-    
-    prefix = [0] * (N + 1)
-    for i in range(1, N + 1):
-        prefix[i] = prefix[i - 1] + a[i - 1]
-    
-    subarrays = []
-    for l in range(1, N + 1):
-        for r in range(l, N + 1):
-            s = prefix[r] - prefix[l - 1]
-            subarrays.append((l, r, s))
-    
-    S = [s for (l, r, s) in subarrays]
-    
-    for i in range(1, N + 1)
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx]); idx +=1
+    a = list(map(int, input[idx:idx+N]))
+    idx +=N
+    Q = int(input[idx]); idx +=1
+    queries = []
+    for _ in range(Q):
+        i = int(input[idx])-1  # convert to 0-based
+        j = int(input[idx+1])
+        queries.append( (i, j) )
+        idx +=2
+
+    # Preprocessing
+    # Create sorted array S in non-decreasing order
+    sorted_with_indices = sorted( (a[i], i) fo
