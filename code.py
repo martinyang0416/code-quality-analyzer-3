@@ -1,23 +1,19 @@
-def main():
-	n, k = map(int, input().split())
-	a = list(map(int, input().split()))
-	s = input().strip()
-	last = s[0]
-	seg = [a[0]]
-	all = []
-	for i in range(1, len(s)):
-		if last == s[i]:
-			seg.append(a[i])
-		else:
-			last = s[i]
-			all.append(seg)
-			seg = [a[i]]
-	if seg:
-		all.append(seg)
-	ans = 0
-	for seg in all:
-		if k < len(seg):
-			seg = sorted(seg, reverse = True)[:k]
-		ans += sum(seg)
-	print(ans)
-main()
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
+
+import builtins
+import re
