@@ -1,11 +1,13 @@
-def coinChange(coins, amount):
-    if amount == 0:
+def countServers(grid):
+    if not grid:
         return 0
-    max_val = amount + 1
-    dp = [max_val] * (max_val)
-    dp[0] = 0
-    for i in range(1, max_val):
-        for coin in coins:
-            if coin <= i:
-                dp[i] = min(dp[i], dp[i - coin] + 1)
-    return dp[amount] if dp[amount] <= amount else -1
+    rows = len(grid)
+    cols = len(grid[0])
+    row_counts = [sum(row) for row in grid]
+    col_counts = [sum(col) for col in zip(*grid)]
+    count = 0
+    for i in range(rows):
+        for j in range(cols):
+            if grid[i][j] == 1 and (row_counts[i] > 1 or col_counts[j] > 1):
+                count += 1
+    return count
