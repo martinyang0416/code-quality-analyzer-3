@@ -1,10 +1,14 @@
-def subarrayBitwiseORs(A):
-    global_set = set()
-    prev = set()
-    for num in A:
-        current = {num}
-        for x in prev:
-            current.add(x | num)
-        prev = current
-        global_set.update(current)
-    return len(global_set)
+def hIndex(citations):
+    n = len(citations)
+    left, right = 0, n - 1
+    res = -1
+    while left <= right:
+        mid = (left + right) // 2
+        if citations[mid] >= (n - mid):
+            res = mid
+            right = mid - 1
+        else:
+            left = mid + 1
+    if res == -1:
+        return 0
+    return n - res
