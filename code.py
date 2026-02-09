@@ -1,12 +1,14 @@
-def singleNumber(nums):
-    result = 0
-    for i in range(32):
-        sum_bit = 0
-        for num in nums:
-            sum_bit += (num >> i) & 1
-        sum_bit %= 3
-        if sum_bit:
-            result |= (sum_bit << i)
-    if result >= (1 << 31):
-        result -= (1 << 32)
-    return result
+def maxArea(height):
+    left = 0
+    right = len(height) - 1
+    max_area = 0
+    while left < right:
+        current_height = min(height[left], height[right])
+        current_area = (right - left) * current_height
+        if current_area > max_area:
+            max_area = current_area
+        if height[left] < height[right]:
+            left += 1
+        else:
+            right -= 1
+    return max_area
