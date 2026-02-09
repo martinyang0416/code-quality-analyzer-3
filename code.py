@@ -1,18 +1,19 @@
-import sys
+n = int(input())
+A = list(map(int, input().split()))
+B = list(map(int, input().split()))
+C = list(map(int, input().split()))
 
-def main():
-    input = sys.stdin.read().split()
-    T = int(input[0])
-    idx = 1
-    for _ in range(T):
-        A = int(input[idx])
-        B = int(input[idx+1])
-        C = int(input[idx+2])
-        idx +=3
-        a = 'K' if A % 3 == 0 else 'X'
-        b = 'G' if B % 5 == 0 else 'Y'
-        c = 'B' if C % 2 == 0 else 'Z'
-        print(f"{a}-{b}-{c}")
+total = 0
 
-if __name__ == "__main__":
-    main()
+# Calculate sum of B values
+for a in A:
+    total += B[a - 1]
+
+# Check consecutive dishes for C bonuses
+for i in range(n - 1):
+    current = A[i]
+    next_dish = A[i + 1]
+    if next_dish == current + 1:
+        total += C[current - 1]
+
+print(total)
