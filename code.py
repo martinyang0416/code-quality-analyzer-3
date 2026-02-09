@@ -1,19 +1,21 @@
-from collections import deque
-
-def findMinStep(board: str, hand: str) -> int:
-    def collapse(s):
-        while True:
-            groups = []
-            n = len(s)
-            i = 0
-            while i < n:
-                current = s[i]
-                j = i
-                while j < n and s[j] == current:
-                    j += 1
-                if j - i >= 3:
-                    groups.append((i, j-1))
-                i = j
-            if not groups:
-                break
-            to_r
+def canConvert(s: str, t: str, k: int) -> bool:
+    if len(s) != len(t):
+        return False
+    
+    shifts = []
+    for sc, tc in zip(s, t):
+        diff = (ord(tc) - ord(sc)) % 26
+        if diff != 0:
+            shifts.append(diff)
+    
+    from collections import Counter
+    counts = Counter(shifts)
+    
+    for r in counts:
+        if r > k:
+            return False
+        available = (k - r) // 26 + 1
+        if counts[r] > available:
+            return False
+    
+    return True
