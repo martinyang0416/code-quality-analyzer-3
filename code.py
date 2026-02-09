@@ -1,7 +1,7 @@
-def maxCoins(piles):
-    piles.sort()
-    total = 0
-    n = len(piles) // 3
-    for i in range(n):
-        total += piles[len(piles) - 2 * (i + 1)]
-    return total
+def isValid(s):
+    stack = []
+    for c in s:
+        stack.append(c)
+        while len(stack) >= 3 and stack[-3:] == ['a', 'b', 'c']:
+            del stack[-3:]
+    return not stack
