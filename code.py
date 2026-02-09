@@ -1,22 +1,25 @@
 import sys
-MOD = 10**9 + 7
+
+class TrieNode:
+    __slots__ = ['children']
+    def __init__(self):
+        self.children = [None, None]  # children for 0 and 1
 
 def main():
-    N, M = map(int, sys.stdin.readline().split())
-    mask = []
+    input = sys.stdin.read().split()
+    idx = 0
+    C = int(input[idx])
+    idx += 1
+    N = int(input[idx])
+    idx += 1
+
+    all_masks = []
     for _ in range(N):
-        s = sys.stdin.readline().strip()
-        m = 0
-        for c in s:
-            m <<= 1
-            if c == 'H':
-                m |= 1
-        mask.append(m)
+        s = input[idx]
+        idx += 1
+        bits = tuple(0 if c == 'G' else 1 for c in s)
+        all_masks.append(bits)
     
-    # Fenwick Tree for 2^M bits (M up to 20 -> 1e6)
-    size = 1 << M
-    fenwick = [0] * (size + 2)  # 1-based indexing
+    unique_masks = list(set(all_masks))
     
-    def update(pos, delta):
-        while pos <= size:
-            fenwick[p
+    
