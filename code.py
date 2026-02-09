@@ -1,31 +1,19 @@
-def replacement(str):
-	str2 = str.replace("oo","u")
-	str3 = str2.replace("kh","h")
-	if str3 == str:
-		return str3
-	else :
-		str3 = replacement(str3)
-		return str3
-	
-	
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-
-n = int(input())
-myList = []
-myList2 = []
-for i in range(n):
-	myList.append(input())
-for x in myList:
-	
-	str4 = replacement(x)
-	str4 = str4.replace("u","oo")
-	str4 = str4.replace("h","kh")
-	
-	exist = False
-	for str in myList2:
-		if str4 == str:
-			exist = True
-	if exist == False:
-		myList2.append(str4)
-
-print(len(myList2))
+import builtins
+import re
