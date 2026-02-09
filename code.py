@@ -1,20 +1,14 @@
-n = int(input())
-left0 = 0
-left1 = 0
-right0 = 0
-right1 = 0
+n, l = map(int, input().split())
+a = list(map(int, input().split()))
+max_ai = max(a) if a else 0
+max_area = 0
 
-for _ in range(n):
-    l, r = map(int, input().split())
-    if l == 0:
-        left0 += 1
-    else:
-        left1 += 1
-    if r == 0:
-        right0 += 1
-    else:
-        right1 += 1
+for d in range(l, max_ai + 1):
+    total = sum(ai // d for ai in a)
+    if total == 0:
+        continue
+    area = total * d
+    if area > max_area:
+        max_area = area
 
-left_min = min(left0, left1)
-right_min = min(right0, right1)
-print(left_min + right_min)
+print(max_area)
