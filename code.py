@@ -1,19 +1,21 @@
-n = int(input())
-a_list = list(map(int, input().split()))
-m = int(input())
-b_list = list(map(int, input().split()))
+from bisect import bisect_left, bisect_right
+from collections import defaultdict
 
-max_ratio = 0
-count = 0
+s = input().strip()
+counts = defaultdict(int)
+for c in s:
+    counts[c] += 1
 
-for a in a_list:
-    for b in b_list:
-        if b % a == 0:
-            ratio = b // a
-            if ratio > max_ratio:
-                max_ratio = ratio
-                count = 1
-            elif ratio == max_ratio:
-                count += 1
+sum_even = sum((v // 2) * 2 for v in counts.values())
+any_odd = any(v % 2 != 0 for v in counts.values())
+max_len = sum_even + (1 if any_odd else 0)
 
-print(count)
+if max_len >= 100:
+    candidate = None
+    for c in counts:
+        if counts[c] >= 100:
+            candidate = c
+            break
+    if candidate is not None:
+        res = []
+        cn
