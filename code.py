@@ -1,19 +1,23 @@
-import sys
+import bisect
 
 def main():
-    s = list(sys.stdin.readline().strip())
-    N = len(s)
-    U = int(sys.stdin.readline())
+    import sys
+    input = sys.stdin.read().split()
+    t = list(input[0])
+    U = int(input[1])
     updates = []
-    for _ in range(U):
-        p, c = sys.stdin.readline().split()
-        p = int(p) - 1  # convert to 0-based
-        updates.append((p, c))
+    for i in range(U):
+        p = int(input[2*i + 2])
+        c = input[2*i + 3]
+        updates.append((p-1, c))  # converting to 0-based index
 
-    T = ['b', 'e', 's', 's', 'i', 'e']
-    # Precompute the initial D array
-    D = []
-    prev_dp = [1, 0, 0, 0, 0, 0, 0]  # initial state before first character
-    for i in range(N):
-        current_char = s[i]
-        n
+    target = 'bessie'
+
+    def compute_instances(s):
+        instances = []
+        pos = [-1] * 6
+        total = 0
+        n = len(s)
+        for i in range(n):
+            c = s[i]
+            for k in range(5
