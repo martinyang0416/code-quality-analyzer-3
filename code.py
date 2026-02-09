@@ -1,3 +1,11 @@
-Okay, let's see. I need to find a Python solution for this problem where the input is an integer a between 0 and 35, and the output is another integer. The examples given are when input is 3, output is 8, and input 10 gives 1024. Hmm, what's the pattern here?
+def solve(a):
+    binary = bin(a)[2:].zfill(6)
+    product = 1
+    for i in range(6):
+        if binary[i] == '1':
+            product *= (6 - i)  # positions counted from the right (starting at 1)
+    return product
 
-Wait, let's think about the examples. For input 3, output 8. 2^3 is 8. Oh right, that's straightforward. Then for 10, 2^10 is 1024. Oh! So maybe the problem is to compute 2 raised to the power of a? But wait, that seems too easy, but maybe
+# Read input and print output
+a = int(input())
+print(solve(a))
