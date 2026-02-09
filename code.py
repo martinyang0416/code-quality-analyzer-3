@@ -1,13 +1,16 @@
-from collections import Counter
-
-def findLeastNumOfUniqueInts(arr, k):
-    freq = Counter(arr)
-    sorted_freq = sorted(freq.values())
-    removed = 0
-    for f in sorted_freq:
-        if k >= f:
-            k -= f
-            removed += 1
+def isRationalEqual(S: str, T: str) -> bool:
+    def parse(s):
+        if '.' in s:
+            int_part, frac_part = s.split('.', 1)
+            if '(' in frac_part:
+                split_idx = frac_part.index('(')
+                non_rep = frac_part[:split_idx]
+                rep = frac_part[split_idx+1:-1]
+            else:
+                non_rep = frac_part
+                rep = ''
+            return int_part, non_rep, rep
         else:
-            break
-    return len(freq) - removed
+            return s, '', ''
+    
+    def to_frac(int
