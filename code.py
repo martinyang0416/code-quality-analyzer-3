@@ -1,26 +1,19 @@
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
 import heapq
+from heapq import *
+from dataclasses import dataclass
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    idx += 1
-    M = int(input[idx])
-    idx += 1
-
-    adj = [[] for _ in range(N+1)]  # 1-based
-
-    for _ in range(M):
-        c = int(input[idx])
-        idx +=1
-        r = int(input[idx])
-        idx +=1
-        d = int(input[idx])
-        idx +=1
-        s = int(input[idx])
-        idx +=1
-        adj[c].append( (r, s, d) )
-    
-    a = list(map(int, input[idx:idx+N]))
-    idx 
+import builtins
+import re
