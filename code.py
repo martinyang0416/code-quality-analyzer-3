@@ -1,1 +1,10 @@
-Okay, let's see. The problem is to take an input integer a between 1 and 30 and output a single integer. The example given is when the input is 3, the output is 27. Hmm, 3 cubed is 27. So maybe the task is to compute a cubed? That seems straightforward. Wait, but let me think again. Are there any other possibilities? Like maybe the sum of numbers up to a or something else? Let's check the example again. 3*3*3 is 27, which fits. Let's try another example in my mind. If a was 2, then output should
+a = int(input())
+presidents = [
+    "Washington", "Adams", "Jefferson", "Madison", "Monroe", "Adams", "Jackson",
+    "Van Buren", "Harrison", "Tyler", "Polk", "Taylor", "Fillmore", "Pierce",
+    "Buchanan", "Lincoln", "Johnson", "Grant", "Hayes", "Garfield", "Arthur",
+    "Cleveland", "Harrison", "Cleveland", "McKinley", "Roosevelt", "Taft", "Wilson",
+    "Harding", "Coolidge", "Hoover", "Roosevelt", "Truman", "Eisenhower", "Kennedy",
+    "Johnson", "Nixon", "Ford", "Carter", "Reagan"
+]
+print(pr
