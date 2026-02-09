@@ -1,16 +1,22 @@
-import sys
+import bisect
 
-users = set()
-total = 0
+n, k, s, t = map(int, input().split())
+cars = [tuple(map(int, input().split())) for _ in range(n)]
+g = list(map(int, input().split()))
 
-for line in sys.stdin:
-    line = line.rstrip('\n')
-    if line.startswith('+'):
-        users.add(line[1:])
-    elif line.startswith('-'):
-        users.remove(line[1:])
-    else:
-        sender, message = line.split(':', 1)
-        total += len(message) * len(users)
+# Process checkpoints and compute segments
+checkpoints = [0] + g + [s]
+checkpoints.sort()
+segments = []
+for i in range(1, len(checkpoints)):
+    segments.append(checkpoints[i] - checkpoints[i-1])
 
-print(total)
+segments.sort()
+
+# Compute prefix sums and max_gap
+prefix = [0]
+current_sum = 0
+for d in segments:
+    current_sum += d
+    prefix.append(current_sum)
+s
