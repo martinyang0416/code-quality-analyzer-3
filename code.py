@@ -1,18 +1,29 @@
-import sys
-from collections import deque
+t = int(input())
+test_cases = []
+max_N = 0
+for _ in range(t):
+    n = int(input())
+    test_cases.append(n)
+    if n > max_N:
+        max_N = n
 
-def compute_diameter(adj):
-    def bfs(start):
-        visited = [False] * (len(adj) + 1)
-        q = deque()
-        q.append((start, 0))
-        visited[start] = True
-        max_dist = 0
-        far_node = start
-        while q:
-            node, dist = q.popleft()
-            for neighbor in adj[node]:
-                if not visited[neighbor]:
-                    visited[neighbor] = True
-                    new_dist = dist + 1
-                    if 
+k_max = max_N - 1
+
+if k_max < 0:
+    dp = [0]
+else:
+    dp = [0] * (k_max + 1)
+    dp[0] = 1
+    if k_max >= 1:
+        dp[1] = 1
+    if k_max >= 2:
+        dp[2] = 1
+    for k in range(3, k_max + 1):
+        dp[k] = dp[k - 1] + dp[k - 3]
+
+for n in test_cases:
+    k = n - 1
+    if k < 0:
+        print(0)
+    else:
+        print(dp[k])
