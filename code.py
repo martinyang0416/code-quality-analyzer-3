@@ -1,23 +1,17 @@
-import heapq
 import sys
 
-def main():
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx +=1
-    for _ in range(T):
-        N = int(input[idx])
-        idx +=1
-        left = []
-        right = []
-        for __ in range(N):
-            K = int(input[idx])
-            L = int(input[idx+1])
-            R = int(input[idx+2])
-            idx +=3
-            if L >= R:
-                left.append( (K, L, R) )
-            else:
-                right.append( (K, L, R) )
-  
+rect_count = 0
+rhombus_count = 0
+
+for line in sys.stdin:
+    line = line.strip()
+    if not line:
+        continue
+    a, b, c = map(int, line.split(','))
+    if a**2 + b**2 == c**2:
+        rect_count += 1
+    if a == b:
+        rhombus_count += 1
+
+print(rect_count)
+print(rhombus_count)
