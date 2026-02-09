@@ -1,17 +1,22 @@
-MOD = 998244353
-MAX = 10**6  # Adjust based on constraints to avoid MLE, but 1e6 is manageable.
+import sys
+from collections import deque
 
-# Precompute factorial, inverse factorial, and inverses up to MAX
-fact = [1] * (MAX)
-for i in range(1, MAX):
-    fact[i] = fact[i-1] * i % MOD
-
-inv_fact = [1] * (MAX)
-inv_fact[MAX-1] = pow(fact[MAX-1], MOD-2, MOD)
-for i in range(MAX-2, -1, -1):
-    inv_fact[i] = inv_fact[i+1] * (i+1) % MOD
-
-def C(n, k):
-    if n < 0 or k < 0 or n < k:
-        return 0
-    return fact[n] * inv_fact[k] % MOD * inv_fact
+def main():
+    sys.setrecursionlimit(1 << 25)
+    n = int(sys.stdin.readline())
+    edges = [[] for _ in range(n+1)]
+    for _ in range(n-1):
+        u, v = map(int, sys.stdin.readline().split())
+        edges[u].append(v)
+        edges[v].append(u)
+    
+    LOG = 20
+    up = [[-1]*(n+1) for _ in range(LOG)]
+    depth = [0]*(n+1)
+    visited = [False]*(n+1)
+    q = deque([1])
+    visited[1] = True
+    up[0][1] = -1
+    
+    while q:
+        u = q.poplef
