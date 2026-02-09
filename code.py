@@ -1,21 +1,20 @@
 import sys
 
-def generate_pairings(lst):
-    if not lst:
-        return [ [] ]
-    first = lst[0]
-    res = []
-    for i in range(1, len(lst)):
-        pair = (first, lst[i])
-        remaining = lst[1:i] + lst[i+1:]
-        for rest in generate_pairings(remaining):
-            res.append([pair] + rest)
-    return res
+def cross(o, a, b):
+    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
 
-def canonical_partition(pairs):
-    sorted_pairs = [tuple(sorted(p)) for p in pairs]
-    sorted_pairs.sort()
-    return tuple(sorted_pairs)
-
-def main():
-    # Precompute all possibl
+def convex_hull(points):
+    points = sorted(points)
+    if len(points) <= 1:
+        return points[:]
+    
+    lower = []
+    for p in points:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+    
+    upper = []
+    for p in reversed(points):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
+         
