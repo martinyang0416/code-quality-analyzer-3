@@ -1,21 +1,23 @@
-from collections import deque
-import sys
+n, s = map(int, input().split())
+A = list(map(int, input().split()))
+mod = 998244353
 
-def main():
-    input = sys.stdin.read().split()
-    ptr = 0
-    T = int(input[ptr])
-    ptr += 1
-    for _ in range(T):
-        N = int(input[ptr])
-        M = int(input[ptr+1])
-        ptr +=2
-        adj = [[] for _ in range(N+1)]
-        for __ in range(M):
-            X = int(input[ptr])
-            Y = int(input[ptr+1])
-            adj[X].append(Y)
-            adj[Y].append(X)
-            ptr +=2
-        distance = [-1]*(N+1)
-        distance[1] = 
+prev_count = [0] * (s + 1)
+prev_sum_x1 = [0] * (s + 1)
+
+answer = 0
+
+for i in range(n):
+    a = A[i]
+    curr_count = [0] * (s + 1)
+    curr_sum_x1 = [0] * (s + 1)
+    
+    if a <= s:
+        curr_count[a] += 1
+        curr_sum_x1[a] = (curr_sum_x1[a] + (i + 1)) % mod
+    
+    for s_prev in range(s + 1):
+        if s_prev + a > s:
+            continue
+        s_new = s_prev + a
+        curr_count[s_new] = (curr_
