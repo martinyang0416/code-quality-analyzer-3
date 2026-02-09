@@ -1,21 +1,19 @@
-import sys
+n = int(input())
+a_list = list(map(int, input().split()))
+m = int(input())
+b_list = list(map(int, input().split()))
 
-def solve():
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    for _ in range(T):
-        n = int(input[idx])
-        k = int(input[idx + 1])
-        idx += 2
-        s = input[idx]
-        idx += 1
-        if n % k != 0:
-            print(-1)
-            continue
-        # Precompute prefix counts
-        prefix_counts = [[0] * 26 for _ in range(n + 1)]
-        for i in range(n):
-            for ch in range(26):
-                prefix_counts[i
+max_ratio = 0
+count = 0
+
+for a in a_list:
+    for b in b_list:
+        if b % a == 0:
+            ratio = b // a
+            if ratio > max_ratio:
+                max_ratio = ratio
+                count = 1
+            elif ratio == max_ratio:
+                count += 1
+
+print(count)
