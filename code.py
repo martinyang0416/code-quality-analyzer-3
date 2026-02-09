@@ -1,20 +1,24 @@
-def is_prime(n):
-    if n < 2:
-        return False
-    if n == 2:
-        return True
-    if n % 2 == 0:
-        return False
-    max_divisor = int(n ** 0.5) + 1
-    for i in range(3, max_divisor, 2):
-        if n % i == 0:
-            return False
-    return True
+def decimal_to_septenary(n):
+    if n == 0:
+        return '0'
+    is_negative = False
+    if n < 0:
+        is_negative = True
+        n = -n
+    digits = []
+    while n > 0:
+        digits.append(str(n % 7))
+        n = n // 7
+    res = ''.join(reversed(digits))
+    if is_negative:
+        res = '-' + res
+    return res
 
-n = int(input())
-count = 0
-for _ in range(n):
-    num = int(input())
-    if is_prime(num):
-        count += 1
-print(count)
+nums = []
+for num in map(int, input().split()):
+    if num == -1:
+        break
+    nums.append(num)
+
+septenary = [decimal_to_septenary(num) for num in nums]
+print(' '.join(se
