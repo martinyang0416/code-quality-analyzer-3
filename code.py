@@ -1,26 +1,25 @@
-from collections import Counter
+n, q = map(int, input().split())
 
-n = int(input())
-cards = [int(input()) for _ in range(n)]
-freq = Counter(cards)
+lower = [0] * (n + 1)
+upper = [0] * (n + 1)
 
-unique = list(freq.keys())
-found = False
-result = []
+for i in range(1, n + 1):
+    lower[i] = 1
+    upper[i] = n
 
-half = n // 2
+for _ in range(q):
+    t, l, r, v = map(int, input().split())
+    if t == 1:
+        for x in range(l, r + 1):
+            if lower[x] < v:
+                lower[x] = v
+    else:
+        for x in range(l, r + 1):
+            if upper[x] > v:
+                upper[x] = v
 
-for i in range(len(unique)):
-    for j in range(i + 1, len(unique)):
-        x = unique[i]
-        y = unique[j]
-        if freq[x] == half and freq[y] == half:
-            found = True
-            result = [x, y]
-            break
-    if found:
-        break
-
-if found:
-    print("YES")
-    print(f"{result[0]} {resu
+valid = True
+total = 0
+for x in range(1, n + 1):
+    if lower[x] > upper[x]:
+        val
