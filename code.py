@@ -1,17 +1,21 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx]); idx += 1
+import sys
 
-    # Precompute all possible pairings of the numbers 1-6 into three pairs
-    all_pairings = []
-    elements = [1, 2, 3, 4, 5, 6]
-    def backtrack(remaining, current_pairs):
-        if not remaining:
-            all_pairings.append(current_pairs)
-            return
-        first = remaining[0]
-        for i in range(1, len(remaining)):
-            pair = (first, remaining[i])
-        
+def generate_pairings(lst):
+    if not lst:
+        return [ [] ]
+    first = lst[0]
+    res = []
+    for i in range(1, len(lst)):
+        pair = (first, lst[i])
+        remaining = lst[1:i] + lst[i+1:]
+        for rest in generate_pairings(remaining):
+            res.append([pair] + rest)
+    return res
+
+def canonical_partition(pairs):
+    sorted_pairs = [tuple(sorted(p)) for p in pairs]
+    sorted_pairs.sort()
+    return tuple(sorted_pairs)
+
+def main():
+    # Precompute all possibl
