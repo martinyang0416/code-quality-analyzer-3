@@ -1,23 +1,22 @@
 import sys
 
+def is_grid_stable(R, C, grid):
+    for i in range(R):
+        for j in range(C):
+            neighbors = 4
+            if i == 0 or i == R - 1:
+                neighbors -= 1
+            if j == 0 or j == C - 1:
+                neighbors -= 1
+            if neighbors <= grid[i][j]:
+                return False
+    return True
+
 def main():
     input = sys.stdin.read().split()
     ptr = 0
     T = int(input[ptr])
     ptr += 1
     for _ in range(T):
-        N = int(input[ptr])
-        ptr += 1
-        X = []
-        H = []
-        for _ in range(N):
-            x = int(input[ptr])
-            h = int(input[ptr + 1])
-            X.append(x)
-            H.append(h)
-            ptr += 2
-        c = [0] * N
-        for j in range(N):
-            if j == 0:
-                c[j] = X[1] - X[0]
-            elif j == N
+        R = int(input[ptr])
+        C
