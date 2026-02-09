@@ -1,23 +1,13 @@
 def putaway(A, B, T, X, Y, W, S):
-    # Check if each toy can be assigned to at least one robot
-    can0 = False
-    can1 = False
+    if T != 2 or (A + B) != 2:
+        # According to the problem's subproblem constraints, we only handle T=2 and A+B=2
+        # In actual submission, this might be handled differently, but for the subproblem:
+        return -1  # This is a safety net
 
-    # Check for toy 0
-    if A > 0:
-        for x in X:
-            if W[0] < x:
-                can0 = True
-                break
-    if not can0 and B > 0:
-        for y in Y:
-            if S[0] < y:
-                can0 = True
-                break
-    if not can0:
-        return -1
+    can_weak = [False] * 2
+    can_small = [False] * 2
 
-    # Check for toy 1
-    if A > 0:
-        for x in X:
-            if W[1] < x:
+    for i in range(2):
+        # Check if the toy can be handled by any weak robot
+        can_weak[i] = any(W[i] < x for x in X) if A > 0 else False
+     
