@@ -1,14 +1,20 @@
-n, l = map(int, input().split())
-a = list(map(int, input().split()))
-max_ai = max(a) if a else 0
-max_area = 0
+n, k = map(int, input().split())
+max_s = 0
 
-for d in range(l, max_ai + 1):
-    total = sum(ai // d for ai in a)
-    if total == 0:
+for _ in range(k):
+    parts = list(map(int, input().split()))
+    mi = parts[0]
+    a = parts[1:]
+    if a[0] != 1:
         continue
-    area = total * d
-    if area > max_area:
-        max_area = area
+    current_s = 1
+    for i in range(1, mi):
+        if a[i] == a[i-1] + 1:
+            current_s += 1
+        else:
+            break
+    if current_s > max_s:
+        max_s = current_s
 
-print(max_area)
+ans = 2 * n - k - 2 * max_s + 1
+print(ans)
