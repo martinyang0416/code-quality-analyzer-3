@@ -1,23 +1,22 @@
-def factorize(k):
-    factors = {}
-    for i in range(2, int(k**0.5) + 1):
-        while k % i == 0:
-            factors[i] = factors.get(i, 0) + 1
-            k = k // i
-    if k > 1:
-        factors[k] = 1
-    return factors
+MOD = 10**9 + 7
 
-n, k = map(int, input().split())
-b = list(map(int, input().split()))
+def compute(s):
+    from math import factorial
+    from collections import Counter
+    
+    counts = Counter(s)
+    a = counts.get('A', 0)
+    b = counts.get('B', 0)
+    n = a + b
+    
+    numerator = factorial(n)
+    denominator = factorial(a) * factorial(b)
+    
+    result = (numerator // denominator) % MOD
+    return result
 
-factors = factorize(k)
-primes = list(factors.keys())
-required = factors
+# Read input
+s = input().strip()
 
-sum_exponents = {p: 0 for p in primes}
-
-for num in b:
-    for p in primes:
-        cnt = 0
-        temp = num  # Create a tempora
+# Compute and print the result
+print(compute(s))
