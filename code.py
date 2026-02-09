@@ -1,20 +1,19 @@
-from typing import List
-def pyramid():
-    n = int(input())
-    aux = n
-    respuesta = 1
-    altura = 1
-    if(n<2):
-        respuesta = 0
-    while(aux>=2):
-        aux = aux - 2*altura - altura + 1
-        if( aux < 0 ):
-            aux = aux + 2*altura + altura - 1
-            altura = 1
-            respuesta = respuesta + 1
-        else:
-            altura = altura + 1
-    print(respuesta)
-t = int(input())
-for i in range(t):
-    pyramid()
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
+
+import builtins
+import re
