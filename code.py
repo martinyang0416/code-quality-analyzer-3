@@ -1,16 +1,11 @@
-def isRationalEqual(S: str, T: str) -> bool:
-    def parse(s):
-        if '.' in s:
-            int_part, frac_part = s.split('.', 1)
-            if '(' in frac_part:
-                split_idx = frac_part.index('(')
-                non_rep = frac_part[:split_idx]
-                rep = frac_part[split_idx+1:-1]
-            else:
-                non_rep = frac_part
-                rep = ''
-            return int_part, non_rep, rep
-        else:
-            return s, '', ''
-    
-    def to_frac(int
+def coinChange(coins, amount):
+    if amount == 0:
+        return 0
+    max_val = amount + 1
+    dp = [max_val] * (max_val)
+    dp[0] = 0
+    for i in range(1, max_val):
+        for coin in coins:
+            if coin <= i:
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+    return dp[amount] if dp[amount] <= amount else -1
