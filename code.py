@@ -1,14 +1,17 @@
-def maxArea(height):
-    left = 0
-    right = len(height) - 1
-    max_area = 0
-    while left < right:
-        current_height = min(height[left], height[right])
-        current_area = (right - left) * current_height
-        if current_area > max_area:
-            max_area = current_area
-        if height[left] < height[right]:
-            left += 1
-        else:
-            right -= 1
-    return max_area
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        n = len(matrix)
+        low = matrix[0][0]
+        high = matrix[-1][-1]
+        
+        def count_less_equal(target):
+            count = 0
+            col = n - 1  # Start from the last column
+            for row in matrix:
+                while col >= 0 and row[col] > target:
+                    col -= 1
+                count += col + 1
+            return count
+        
+        while low < high:
+      
