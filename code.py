@@ -1,19 +1,24 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
+N, A, B = map(int, input().split())
+val = [int(i) for i in input().split()]
 
-import builtins
-import re
+def combi(n, m):
+    from math import factorial
+    return factorial(n) // (factorial(m) * factorial(n-m))
+
+val.sort(reverse=True)
+ave = sum(val[:A])/A
+
+l = val.index(val[A-1])
+x = val.count(val[A-1])
+ct = 0
+
+if val[0] == val[A-1]:
+    for i in range(A, x+1):
+        if i > B:
+            break
+        else:
+            ct += combi(x, i)
+else:
+    ct = combi(x, A-l)
+print(ave)
+print(ct)
