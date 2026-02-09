@@ -1,12 +1,22 @@
-def simplifyPath(path: str) -> str:
-    stack = []
-    parts = path.split('/')
-    for part in parts:
-        if part == '..':
-            if stack:
-                stack.pop()
-        elif part == '.' or not part:
-            continue
+def split_array(nums, m):
+    left = max(nums)
+    right = sum(nums)
+    
+    while left < right:
+        mid = (left + right) // 2
+        current_sum = 0
+        splits = 1
+        
+        for num in nums:
+            if current_sum + num > mid:
+                splits += 1
+                current_sum = num
+            else:
+                current_sum += num
+        
+        if splits <= m:
+            right = mid
         else:
-            stack.append(part)
-    return '/' + '/'.join(stack) if stack else '/'
+            left = mid + 1
+    
+    return left
