@@ -1,19 +1,17 @@
-import bisect
+def min_changes(triplet, target_sum):
+    sum_orig = sum(triplet)
+    delta = target_sum - sum_orig
+    if delta == 0:
+        return 0
+    delta_i_min = [-d for d in triplet]
+    delta_i_max = [9 - d for d in triplet]
+    for k in [1, 2, 3]:
+        sorted_min = sorted(delta_i_min)
+        min_d = sum(sorted_min[:k])
+        sorted_max = sorted(delta_i_max, reverse=True)
+        max_d = sum(sorted_max[:k])
+        if min_d <= delta <= max_d:
+            return k
+    return 3
 
-class SegmentTree:
-    def __init__(self, size):
-        self.n = 1
-        while self.n < size:
-            self.n <<= 1
-        self.size = size
-        self.tree = [-float('inf')] * (2 * self.n)
-
-    def update_point(self, pos, value):
-        pos += self.n
-        self.tree[pos] = value
-        pos >>= 1
-        while pos >= 1:
-            new_val = max(self.tree[2 * pos], self.tree[2 * pos + 1])
-            if self.tree[pos] == new_val:
-                break
-            self.
+ticket = input().s
