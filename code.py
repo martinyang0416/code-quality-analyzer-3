@@ -1,14 +1,13 @@
-from functools import lru_cache
+import itertools
 
-def countArrangement(n: int) -> int:
-    @lru_cache(maxsize=None)
-    def backtrack(pos, used_mask):
-        if pos > n:
-            return 1
-        count = 0
-        for num in range(1, n+1):
-            if not (used_mask & (1 << (num-1))):
-                if num % pos == 0 or pos % num == 0:
-                    count += backtrack(pos + 1, used_mask | (1 << (num-1)))
-        return count
-    return backtrack(1, 0)
+def maxAbsValExpr(arr1, arr2):
+    max_diff = 0
+    for signs in itertools.product([1, -1], repeat=3):
+        s1, s2, s3 = signs
+        values = [s1 * a + s2 * b + s3 * i for i, (a, b) in enumerate(zip(arr1, arr2))]
+        current_max = max(values)
+        current_min = min(values)
+        diff = current_max - current_min
+        if diff > max_diff:
+            max_diff = diff
+    return max_diff
