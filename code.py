@@ -1,16 +1,25 @@
 n = int(input())
-coins = [int(input()) for _ in range(n)]
-total = sum(coins)
-half = total // 2
+s = list(input().strip())
 
-possible_sums = {0}
-for v in coins:
-    sums_to_add = list(possible_sums)
-    for s in sums_to_add:
-        new_sum = s + v
-        if new_sum <= half:
-            possible_sums.add(new_sum)
+carry = True
+count = 0
+pos = n - 1  # Start at the LSB (last character)
 
-max_sum = max(possible_sums)
-min_diff = total - 2 * max_sum
-print(min_diff)
+while pos >= 0 and carry:
+    current = s[pos]
+    # Toggle the bit
+    if current == '1':
+        s[pos] = '0'
+    else:
+        s[pos] = '1'
+    count += 1
+
+    # Determine if carry continues
+    if current == '1':
+        carry = True
+    else:
+        carry = False
+
+    pos -= 1
+
+print(count)
