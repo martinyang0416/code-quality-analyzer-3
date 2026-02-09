@@ -1,22 +1,15 @@
-MOD = 10**9 + 7
+def count_odd_pairs(s):
+    even = 0
+    odd = 0
+    for char in s:
+        pos = ord(char) - ord('a') + 1
+        if pos % 2 == 0:
+            even += 1
+        else:
+            odd += 1
+    return even * odd
 
-def compute(s):
-    from math import factorial
-    from collections import Counter
-    
-    counts = Counter(s)
-    a = counts.get('A', 0)
-    b = counts.get('B', 0)
-    n = a + b
-    
-    numerator = factorial(n)
-    denominator = factorial(a) * factorial(b)
-    
-    result = (numerator // denominator) % MOD
-    return result
-
-# Read input
-s = input().strip()
-
-# Compute and print the result
-print(compute(s))
+T = int(input())
+for _ in range(T):
+    S = input().strip()
+    print(count_odd_pairs(S))
