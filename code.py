@@ -1,22 +1,21 @@
-import bisect
+MOD = 10**9 + 7
 
-def putaway(A, B, T, X, Y, W, S):
-    X_sorted = sorted(X)
-    Y_sorted = sorted(Y)
+def main():
+    import sys
+    N, M = map(int, sys.stdin.readline().split())
+    test_solvers = []
+    for _ in range(M):
+        s = sys.stdin.readline().strip()
+        test_solvers.append(s)
     
-    can_weak = [False] * T
-    can_small = [False] * T
+    max_mask = 1 << M
+    count = [0] * max_mask  # Initialize count array for all possible bitmasks
     
-    for i in range(T):
-        w = W[i]
-        idx = bisect.bisect_right(X_sorted, w)
-        can_weak[i] = (idx < len(X_sorted))
-        
-        s = S[i]
-        idx = bisect.bisect_right(Y_sorted, s)
-        can_small[i] = (idx < len(Y_sorted))
-        
-        if not (can_weak[i] or can_small[i]):
-            return -1
+    for p in range(N):
+        mask = 0
+        for m in range(M):
+            if test_solvers[m][p] == 'H':
+                mask |= 1 << m
+        count[mask] += 1
     
-    o
+    max_
