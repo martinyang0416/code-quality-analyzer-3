@@ -1,18 +1,17 @@
 def main():
     import sys
 
-    prefix = "What are you doing while sending "  # 33 characters
-    middle_str = "? Are you busy? Will you send "  # 26 characters
-    f0_str = "What are you doing at the end of the world? Are you busy? Will you save us?"
+    part1 = "What are you doing while sending "  # ends with a space (33 characters)
+    part2 = " Are you busy? Will you send "     # ends with a space (28 characters)
+    f0 = "What are you doing at the end of the world? Are you busy? Will you save us?"  # 71 characters
+
+    # Precompute lengths
+    part1_len = len(part1)
+    part2_len = len(part2)
+    f0_len = len(f0)
 
     q = int(sys.stdin.readline())
-    output = []
+    res = []
 
     for _ in range(q):
-        n, k = map(int, sys.stdin.readline().split())
-        current_level = n
-        current_k = k
-
-        while current_level > 0:
-            if current_k <= 33:
-     
+        n, k = map(int, sy
