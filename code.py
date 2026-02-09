@@ -1,8 +1,16 @@
-# Read input values
-N, M = map(int, input().split())
+import sys
+from functools import lru_cache
 
-# Check if N is less than or equal to M*(M-1)
-if N <= M * (M - 1):
-    print("YES")
-else:
-    print("NO")
+def main():
+    N, M = map(int, sys.stdin.readline().split())
+
+    @lru_cache(maxsize=None)
+    def dfs(remaining_product, remaining_count):
+        if remaining_count == 0:
+            return remaining_product == 1
+        if remaining_product == 0:
+            return False
+        max_a = min(M, remaining_product)
+        for a in range(1, max_a + 1):
+            if remaining_product % a == 0:
+                if dfs(remaining_product // a, remaining_
