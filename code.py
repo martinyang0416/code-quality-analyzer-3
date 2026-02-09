@@ -1,22 +1,18 @@
-import sys
-from collections import deque
+import heapq
 
-def main():
-    sys.setrecursionlimit(1 << 25)
-    n = int(sys.stdin.readline())
-    edges = [[] for _ in range(n+1)]
-    for _ in range(n-1):
-        u, v = map(int, sys.stdin.readline().split())
-        edges[u].append(v)
-        edges[v].append(u)
-    
-    LOG = 20
-    up = [[-1]*(n+1) for _ in range(LOG)]
-    depth = [0]*(n+1)
-    visited = [False]*(n+1)
-    q = deque([1])
-    visited[1] = True
-    up[0][1] = -1
-    
-    while q:
-        u = q.poplef
+n, m, k = map(int, input().split())
+a = [list(map(int, input().split())) for _ in range(n)]
+important = []
+for _ in range(k):
+    x, y = map(int, input().split())
+    important.append((x-1, y-1))
+
+index_map = {(x, y): i for i, (x, y) in enumerate(important)}
+
+INF = float('inf')
+dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+full_mask = (1 << k) - 1
+
+# Initialize distance and predecessor arrays
+dist = [[[INF] * (1 << k) for _ in range(m)] for __ in range(n)]
+prev = [[[None] * (1 << k) fo
