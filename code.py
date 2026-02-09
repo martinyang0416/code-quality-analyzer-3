@@ -1,20 +1,20 @@
-import sys
-
-def main():
-    for line in sys.stdin:
-        line = line.strip()
-        if not line:
-            continue
-        if line == '0':
-            break
-        N = int(line)
-        days = []
-        valid = True
-        # Read N days and check validity
-        for _ in range(N):
-            # Read next non-empty line
-            while True:
-                curr_line = sys.stdin.readline()
-                if not curr_line:
-                    break
-                curr_line = curr_lin
+while True:
+    n = int(input())
+    if n == 0:
+        break
+    moves = input().split()
+    left = 'floor'
+    right = 'floor'
+    state = 'floor'
+    count = 0
+    for move in moves:
+        if move == 'lu':
+            left = 'step'
+        elif move == 'ru':
+            right = 'step'
+        elif move == 'ld':
+            left = 'floor'
+        elif move == 'rd':
+            right = 'floor'
+        # Check state transitions
+        if state == 'floor' and left == 'step' and right == 'step'
