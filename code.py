@@ -1,11 +1,26 @@
 from collections import Counter
 
-t = input().strip()
-p = input().strip()
-permutation = list(map(int, input().split()))  # This is not used in the solution
+n = int(input())
+cards = [int(input()) for _ in range(n)]
+freq = Counter(cards)
 
-count_p = Counter(p)
-sum_p = sum(count_p.values())
-max_remove = len(t) - sum_p
+unique = list(freq.keys())
+found = False
+result = []
 
-print(max_remove)
+half = n // 2
+
+for i in range(len(unique)):
+    for j in range(i + 1, len(unique)):
+        x = unique[i]
+        y = unique[j]
+        if freq[x] == half and freq[y] == half:
+            found = True
+            result = [x, y]
+            break
+    if found:
+        break
+
+if found:
+    print("YES")
+    print(f"{result[0]} {resu
