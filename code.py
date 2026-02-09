@@ -1,10 +1,20 @@
-t = int(input())
-for _ in range(t):
-    a, b, c = map(int, input().split())
-    max_ops = 0
-    x_max = min(a, b // 2)
-    for x in range(x_max + 1):
-        current_b = b - 2 * x
-        y = min(current_b, c // 2)
-        max_ops = max(max_ops, x + y)
-    print(max_ops * 3)
+import sys
+from itertools import combinations
+
+def main():
+    input = sys.stdin.read().split()
+    ptr = 0
+    t = int(input[ptr])
+    ptr += 1
+    for _ in range(t):
+        n, c, q = map(int, input[ptr:ptr+3])
+        ptr +=3
+        p = list(map(int, input[ptr:ptr+n]))
+        ptr +=n
+        queries = []
+        for __ in range(q):
+            i, j = map(int, input[ptr:ptr+2])
+            ptr +=2
+            queries.append( (i-1, j) )  # converting to 0-based index
+        
+        # Genera
