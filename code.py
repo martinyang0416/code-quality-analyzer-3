@@ -1,19 +1,19 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    T = int(input[0])
-    cases = list(map(float, input[1:T+1]))
-    
-    for S in cases:
-        valid = []
-        for h in range(12):
-            for m in range(60):
-                total = 30.0 * h + 6.5 * m
-                if abs(total - S) <= 0.1:
-                    valid.append((h, m))
-        # Prepare output
-        output = []
-        for h, m in valid:
-            hh = f"{h:02d}"
-            mm = f"{m:02d}"
-            o
+n, m, k = map(int, input().split())
+islands = []
+for _ in range(n):
+    name = input().strip()
+    artifacts = []
+    for _ in range(m):
+        buy, sell, stock = map(int, input().split())
+        artifacts.append((buy, sell, stock))
+    islands.append(artifacts)
+
+max_profit = 0
+
+for from_island in range(n):
+    for to_island in range(n):
+        if from_island == to_island:
+            continue
+        items = []
+        for artifact in range(m):
+            a_buy = islands[from_island][artifa
