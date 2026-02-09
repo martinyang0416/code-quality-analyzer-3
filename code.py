@@ -9,20 +9,19 @@ def main():
     Q = int(input[idx])
     idx += 1
 
-    S = input[idx]
+    s = input[idx]
     idx += 1
-    special_str = input[idx]
+    spec_str = input[idx]
     idx += 1
 
     # Parse L and R positions
-    Ls = []
-    Rs = []
-    for i in range(len(S)):
-        c = S[i]
-        pos = i + 1  # 1-based positions
+    L = []
+    R = []
+    for pos, c in enumerate(s):
         if c == 'L':
-            Ls.append(pos)
+            L.append(pos)
         else:
-            Rs.append(pos)
-    
-    # Special array (1-ba
+            R.append(pos)
+    assert len(L) == N and len(R) == N
+
+    # Precompute next_furthest for each tractor (1-
