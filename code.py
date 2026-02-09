@@ -1,18 +1,23 @@
-n = int(input())
-s = input().strip()
+import sys
 
-zeros = s.count('0')
-ones = len(s) - zeros
-
-if zeros != ones:
-    print(1)
-    print(s)
-else:
-    for i in range(1, len(s)):
-        s1 = s[:i]
-        z1 = s1.count('0')
-        o1 = i - z1
-        if z1 != o1:
-            print(2)
-            print(f"{s1} {s[i:]}")
-            break
+def main():
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    t = int(data[idx])
+    idx += 1
+    for _ in range(t):
+        n = int(data[idx])
+        idx += 1
+        a = list(map(int, data[idx:idx+n]))
+        idx += n
+        if n == 1:
+            print("Yes")
+            continue
+        
+        # Compute left_valid and is_left_possible
+        left_valid = [False] * n
+        for i in range(n):
+            left_valid[i] = a[i] >= i
+        
+        is_left
