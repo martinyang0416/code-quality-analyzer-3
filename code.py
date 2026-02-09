@@ -1,21 +1,17 @@
-from bisect import bisect_left, bisect_right
-from collections import defaultdict
+import sys
 
-s = input().strip()
-counts = defaultdict(int)
-for c in s:
-    counts[c] += 1
+def main():
+    n, q = map(int, sys.stdin.readline().split())
+    a = list(map(int, sys.stdin.readline().split()))
+    max_a = max(a) if a else 0
 
-sum_even = sum((v // 2) * 2 for v in counts.values())
-any_odd = any(v % 2 != 0 for v in counts.values())
-max_len = sum_even + (1 if any_odd else 0)
-
-if max_len >= 100:
-    candidate = None
-    for c in counts:
-        if counts[c] >= 100:
-            candidate = c
-            break
-    if candidate is not None:
-        res = []
-        cn
+    def compute_mobius(max_mobius):
+        if max_mobius < 1:
+            return []
+        spf = list(range(max_mobius + 1))
+        for i in range(2, int(max_mobius**0.5) + 1):
+            if spf[i] == i:
+                for j in range(i * i, max_mobius + 1, i):
+                    if spf[j] == j:
+                        spf[j] = i
+    
