@@ -1,20 +1,15 @@
-while True:
-    n = int(input())
-    if n == 0:
-        break
-    moves = input().split()
-    left = 'floor'
-    right = 'floor'
-    state = 'floor'
-    count = 0
-    for move in moves:
-        if move == 'lu':
-            left = 'step'
-        elif move == 'ru':
-            right = 'step'
-        elif move == 'ld':
-            left = 'floor'
-        elif move == 'rd':
-            right = 'floor'
-        # Check state transitions
-        if state == 'floor' and left == 'step' and right == 'step'
+n = int(input())
+cards = set()
+
+for _ in range(n):
+    s, r = input().split()
+    cards.add((s, int(r)))
+
+missing = []
+for suit in ['S', 'H', 'C', 'D']:
+    for rank in range(1, 14):
+        if (suit, rank) not in cards:
+            missing.append(f"{suit} {rank}")
+
+for card in missing:
+    print(card)
