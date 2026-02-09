@@ -1,2 +1,3 @@
 a = int(input())
-print((a - 1).bit_length())
+sum_digits = (a // 10) + (a % 10)
+print("YES" if sum_digits % 5 == 0 else "NO")
