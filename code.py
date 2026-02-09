@@ -1,3 +1,12 @@
 s = input().strip()
-last_digit = s[-1]
-print(0 if int(last_digit) % 2 == 0 else 1)
+sum_digits = sum(int(c) for c in s)
+
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+print("Yes" if is_prime(sum_digits) else "No")
