@@ -1,11 +1,14 @@
-def findTargetSumWays(nums, S):
-    total = sum(nums)
-    if (total + S) % 2 != 0 or (total + S) < 0:
-        return 0
-    P = (total + S) // 2
-    dp = [0] * (P + 1)
-    dp[0] = 1
-    for num in nums:
-        for i in range(P, num - 1, -1):
-            dp[i] += dp[i - num]
-    return dp[P]
+class Solution:
+    def rob(self, nums: list[int]) -> int:
+        def helper(subnums):
+            prev, curr = 0, 0
+            for num in subnums:
+                prev, curr = curr, max(curr, prev + num)
+            return curr
+        
+        if not nums:
+            return 0
+        n = len(nums)
+        if n == 1:
+            return nums[0]
+        return max(helper(nums[:-1]), helper(nums[1:]))
