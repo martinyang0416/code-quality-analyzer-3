@@ -1,25 +1,20 @@
-import math
+import sys
+from collections import deque
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
+    input = sys.stdin.read
+    data = input().split()
     idx = 0
-    n = int(input[idx])
+    T = int(data[idx])
     idx += 1
-    m = int(input[idx])
-    idx += 1
-    
-    a = list(map(int, input[idx:idx+n]))
-    idx += n
-    b = list(map(int, input[idx:idx+m]))
-    idx += m
-    x = int(input[idx])
-    idx += 1
-
-    # Precompute log of x
-    log_x = math.log(x)
-
-    # Precompute for a: minimal log sum for each possible subarray length
-    min_log_a = {}
-    for s in range(1, n+1):
-        min_lo
+    for _ in range(T):
+        N = int(data[idx])
+        idx += 1
+        A = list(map(int, data[idx:idx+N]))
+        idx += N
+        B = list(map(int, data[idx:idx+N]))
+        idx += N
+        D = [B[i] - A[i] for i in range(N)]
+        edges = [[] for _ in range(N)]
+        for _ in range(N-1):
+            u = int(data[idx]) - 1  # conve
