@@ -1,18 +1,15 @@
-import bisect
-
 def main():
     import sys
-    s = sys.stdin.read().strip()
-    n = len(s)
+    N, K, T = map(int, sys.stdin.readline().split())
+    initial_active = list(map(int, sys.stdin.readline().split()))
     
-    # Initialize prefix arrays
-    prefix_b = [0] * (n + 1)
-    prefix_e = [0] * (n + 1)
-    prefix_s = [0] * (n + 1)
-    prefix_i = [0] * (n + 1)
+    effective_T = T % N
     
-    for i in range(n):
-        prefix_b[i+1] = prefix_b[i] + (1 if s[i] == 'b' else 0)
-        prefix_e[i+1] = prefix_e[i] + (1 if s[i] == 'e' else 0)
-        prefix_s[i+1] = prefix_s[i] + (1 if s[i] == 's' else 0)
-        prefix_i[i+1] = prefix_i[i] + 
+    # Initialize the positions array
+    pos = list(range(N))
+    
+    # The initial current_cows is the cows at the initial active positions
+    current_cows = [pos[A] for A in initial_active]
+    
+    for step in range(1, effective_T + 1):
+        # Rotate the current_cows: [a0, a1, ..., aK-1] becomes [aK-1, a0, a1, 
