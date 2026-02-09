@@ -1,18 +1,19 @@
-def findKthNumber(n: int, k: int) -> int:
-    current = 1
-    k -= 1  # convert to 0-based index
-    while k > 0:
-        steps = 0
-        first = current
-        last = current
-        while first <= n:
-            steps += min(last, n) - first + 1
-            first *= 10
-            last = last * 10 + 9
-        if steps <= k:
-            k -= steps
-            current += 1
-        else:
-            k -= 1
-            current *= 10
-    return current
+def shipWithinDays(weights, D):
+    left = max(weights)
+    right = sum(weights)
+    answer = right  # Initialize with the upper bound
+    
+    while left <= right:
+        mid = (left + right) // 2
+        days_needed = 1
+        current_load = 0
+        
+        for weight in weights:
+            if current_load + weight > mid:
+                days_needed += 1
+                current_load = 0
+            current_load += weight
+        
+        if days_needed <= D:
+            answer = mid
+    
