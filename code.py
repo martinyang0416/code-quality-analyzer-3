@@ -1,18 +1,13 @@
-MOD = 10**9 + 7
-MAX_N = 200000  # Adjust this value based on expected constraints
+n = int(input())
+list1 = list(map(int, input().split()))
+s1 = set(list1)
+list2 = list(map(int, input().split()))
+s2 = set(list2)
+list3 = list(map(int, input().split()))
+s3 = set(list3)
 
-# Precompute factorial and inverse factorial arrays
-fact = [1] * (MAX_N + 1)
-for i in range(1, MAX_N + 1):
-    fact[i] = fact[i-1] * i % MOD
+fixed1 = (s1 - s2).pop()
+fixed2 = (s2 - s3).pop()
 
-inv_fact = [1] * (MAX_N + 1)
-# Compute inverse factorial of MAX_N first
-inv_fact[MAX_N] = pow(fact[MAX_N], MOD-2, MOD)
-for i in range(MAX_N - 1, -1, -1):
-    inv_fact[i] = inv_fact[i+1] * (i+1) % MOD
-
-def comb(n, k):
-    if n < 0 or k < 0 or k > n:
-        return 0
-    retur
+print(fixed1)
+print(fixed2)
