@@ -1,22 +1,28 @@
-import sys
-
 class TrieNode:
     __slots__ = ['children']
     def __init__(self):
         self.children = [None, None]
 
 def main():
-    C, N = map(int, sys.stdin.readline().split())
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    C = int(input[idx])
+    idx += 1
+    N = int(input[idx])
+    idx += 1
+
     masks = []
     for _ in range(N):
-        s = sys.stdin.readline().strip()
+        s = input[idx]
+        idx += 1
         mask = 0
         for c in s:
-            mask = (mask << 1) | (1 if c == 'H' else 0)
+            mask <<= 1
+            if c == 'H':
+                mask |= 1
         masks.append(mask)
-    
-    # Build the trie
+
     root = TrieNode()
-    for mask in masks:
-        node = root
-        for i in range(C-1, -
+
+  
