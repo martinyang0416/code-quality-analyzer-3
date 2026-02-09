@@ -1,8 +1,18 @@
-n = int(input())
-total = 0.0
-for _ in range(n):
-    score = float(input())
-    total += score
-average = total / n
-adjusted_average = average + 10
-print("{0:.2f}".format(round(adjusted_average, 2)))
+def check_valid_groups(temp_list):
+    groups = []
+    i = 0
+    n = len(temp_list)
+    while i < n:
+        if i + 3 < n:
+            current = temp_list[i:i+4]
+            if len(set(current)) == 1:
+                groups.append(current)
+                i += 4
+                continue
+            if current == sorted(current) and current[0] == current[3] - 3:
+                groups.append(current)
+                i += 4
+                continue
+        if i + 3 >= n:
+            return False
+ 
