@@ -1,19 +1,15 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
-
-import builtins
-import re
+a = "abcdefghijklmnopqrstuvwxyz"
+def alpha (r,n):
+    if len(r)==1 and r[0]==n:
+        print("YES")
+        return 0
+    elif r[0]==n:
+        alpha(r[1:],a[(a.find(n))-1])
+    elif r[-1]==n:
+         alpha(r[:-1],a[(a.find(n))-1])
+    else:
+        print("NO")
+k = int(input())
+for i in range(k):
+    r = str(input())
+    alpha(r,a[len(r)-1])
