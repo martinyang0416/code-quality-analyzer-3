@@ -1,19 +1,18 @@
-import bisect
 from collections import deque
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    w = int(input[ptr]); ptr +=1
-    h = int(input[ptr]); ptr +=1
-    n = int(input[ptr]); ptr +=1
-    flower_beds = []
-    for _ in range(n):
-        x1 = int(input[ptr]); ptr +=1
-        y1 = int(input[ptr]); ptr +=1
-        x2 = int(input[ptr]); ptr +=1
-        y2 = int(input[ptr]); ptr +=1
-        flower_beds.append( (x1, y1, x2, y2) )
-    
-    # Collect x and y coordinate
+class Edge:
+    def __init__(self, to, rev, capacity):
+        self.to = to
+        self.rev = rev
+        self.capacity = capacity
+
+class Dinic:
+    def __init__(self, n):
+        self.size = n
+        self.graph = [[] for _ in range(n+1)]  # 1-based indexing
+
+    def add_edge(self, fr, to, cap):
+        forward = Edge(to, len(self.graph[to]), cap)
+        backward = Edge(fr, len(self.graph[fr]), 0)
+        self.graph[fr].append(forward)
+        self.graph[to].app
