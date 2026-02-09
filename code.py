@@ -1,10 +1,19 @@
-def canJump(nums):
-    n = len(nums)
-    max_reach = 0
-    for i in range(n):
-        if i > max_reach:
-            return False
-        max_reach = max(max_reach, i + nums[i])
-        if max_reach >= n - 1:
-            return True
-    return max_reach >= n - 1
+from collections import deque
+
+def findMinStep(board: str, hand: str) -> int:
+    def collapse(s):
+        while True:
+            groups = []
+            n = len(s)
+            i = 0
+            while i < n:
+                current = s[i]
+                j = i
+                while j < n and s[j] == current:
+                    j += 1
+                if j - i >= 3:
+                    groups.append((i, j-1))
+                i = j
+            if not groups:
+                break
+            to_r
