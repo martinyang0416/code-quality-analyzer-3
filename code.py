@@ -1,27 +1,20 @@
-MOD = 10**9 + 7
+import sys
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    idx += 1
-    M = int(input[idx])
-    idx += 1
+    n = int(sys.stdin.readline())
+    l = list(map(int, sys.stdin.readline().split()))
+    m = max(l)
+    s = sum(l)
+    
+    # Option 1: Z <= current maximum
+    option1_val = max(1, 2 * m - s + 1)
+    candidate1 = option1_val if option1_val <= m else float('inf')
+    
+    # Option 2: Z becomes new maximum
+    option2_val = m + 1
+    candidate2 = option2_val if s > option2_val else float('inf')
+    
+    minimal_z = min(candidate1, candidate2)
+    print(minimal_z)
 
-    edges = []
-    for _ in range(M):
-        a = int(input[idx]) - 1  # converting to 0-based index
-        idx += 1
-        b = int(input[idx]) - 1
-        idx += 1
-        c = int(input[idx])
-        idx += 1
-        edges.append((c, a, b))
-
-    # Sort edges by cost
-    edges.sort()
-
-    # Group edges by cost
-    groups = []
-  
+if __n
