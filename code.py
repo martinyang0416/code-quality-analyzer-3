@@ -1,18 +1,18 @@
-def putaway(A, B, T, X, Y, W, S):
-    # Pre-check if all toys are assignable
-    maxWeakX = max(X) if A > 0 else -1
-    maxSmallY = max(Y) if B > 0 else -1
+from typing import List
+from collections import deque
 
-    for i in range(T):
-        w = W[i]
-        s = S[i]
-        can_weak = (A > 0 and w < maxWeakX)
-        can_small = (B > 0 and s < maxSmallY)
-        if not can_weak and not can_small:
-            return -1
+class Edge:
+    def __init__(self, to: int, rev: int, capacity: int):
+        self.to = to
+        self.rev = rev
+        self.capacity = capacity
 
-    # Sort robots and toys
-    sorted_weak = sorted(X)
-    sorted_small = sorted(Y)
-
-    # Sort toys by weight for weak processing
+class Dinic:
+    def __init__(self, n: int):
+        self.size = n
+        self.graph = [[] for _ in range(n)]
+        
+    def add_edge(self, fr: int, to: int, capacity: int):
+        forward = Edge(to, len(self.graph[to]), capacity)
+        backward = Edge(fr, len(self.graph[fr]), 0)
+        se
