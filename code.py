@@ -1,20 +1,21 @@
-n = int(input())
-winners = [int(input().strip()) for _ in range(n)]
+MOD = 10**9 + 7
+max_fact = 10**5
 
-current_players = [1, 2]
-spectator = 3
-valid = True
+# Precompute factorial and inverse factorial arrays
+fact = [1] * (max_fact + 1)
+for i in range(1, max_fact + 1):
+    fact[i] = fact[i-1] * i % MOD
 
-for a in winners:
-    if a not in current_players:
-        valid = False
-        break
-    if current_players[0] == a:
-        other = current_players[1]
-    else:
-        other = current_players[0]
-    next_players = [a, spectator]
-    spectator = other
-    current_players = next_players
+inv_fact = [1] * (max_fact + 1)
+inv_fact[max_fact] = pow(fact[max_fact], MOD-2, MOD)
+for i in range(max_fact - 1, -1, -1):
+    inv_fact[i] = inv_fact[i+1] * (i+1) % MOD
 
-print("YES" if valid else "NO")
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    T = int(input[ptr])
+    ptr +=1
+    for _ in range(T):
+        N, K 
