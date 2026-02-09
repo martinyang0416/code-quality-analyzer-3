@@ -1,18 +1,19 @@
-from collections import defaultdict
-
-def uniqueLetterString(s: str) -> int:
-    MOD = 10**9 + 7
-    char_positions = defaultdict(list)
-    n = len(s)
+class DSU:
+    def __init__(self):
+        self.parent = {}
+        self.size = {}
     
-    for i, char in enumerate(s):
-        char_positions[char].append(i)
+    def find(self, x):
+        if x not in self.parent:
+            self.parent[x] = x
+            self.size[x] = 1
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
     
-    total = 0
-    for char, indices in char_positions.items():
-        m = len(indices)
-        for i in range(m):
-            current = indices[i]
-            prev = indices[i-1] if i > 0 else -1
-            next_ = indices[i+1] if i < m - 1 else n
-            total 
+    def union(self, x, y):
+        x_root = self.find(x)
+        y_root = self.find(y)
+        if x_root == y_root:
+            return
+        if self.size[x_root] < self.siz
