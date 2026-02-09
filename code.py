@@ -1,24 +1,21 @@
+import bisect
+from collections import defaultdict
+
 def main():
     import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    M = int(input[idx])
-    idx += 1
-    D = int(input[idx])
-    idx += 1
-    
-    stations = []
-    for _ in range(M):
-        f = int(input[idx])
-        p = int(input[idx + 1])
-        stations.append((p, f))
-        idx += 2
-    
-    stations.sort()  # Sort by position
-    left = 0
-    current_sum = 0
-    max_sum = 0
-    
-    for right in range(len(stations)):
-        current_sum += stations[right][1]
-        while s
+    input = sys.stdin.read
+    data = input().split()
+    n = int(data[0])
+    ptr = 1
+
+    # Initialize a dictionary to hold for each x its list of dates and prefix sums
+    warehouse = defaultdict(lambda: ([], []))  # [dates, sums]
+
+    for _ in range(n):
+        a = int(data[ptr])
+        d = int(data[ptr+1])
+        x = int(data[ptr+2])
+        ptr += 3
+
+        if a == 1 or a == 2:
+            delta = 1 if a == 1 
