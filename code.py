@@ -1,13 +1,16 @@
-n, x = map(int, input().split())
-k = int(input())
-c = 0
-for _ in range(k):
-    t, _ = map(int, input().split())
-    if t == 1:
-        c += 1
+n = int(input())
+a = list(map(int, input().split()))
+up = [1] * n
+down = [1] * n
 
-u = (x - 1) - k
-min_skipped = 0
-max_skipped = u
+for i in range(n):
+    for j in range(i):
+        if a[j] < a[i]:
+            if down[j] + 1 > up[i]:
+                up[i] = down[j] + 1
+        elif a[j] > a[i]:
+            if up[j] + 1 > down[i]:
+                down[i] = up[j] + 1
 
-print(min_skipped, max_skipped)
+max_length = max(max(up), max(down))
+print(max_length)
