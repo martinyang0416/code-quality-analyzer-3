@@ -1,12 +1,17 @@
-A, B, C, X, Y = map(int, input().split())
-max_k = 2 * max(X, Y)
-min_cost = float('inf')
+import sys
+from collections import defaultdict
 
-for k in range(0, max_k + 1):
-    a = max(0, (2 * X - k + 1) // 2)
-    b = max(0, (2 * Y - k + 1) // 2)
-    cost = a * A + b * B + k * C
-    if cost < min_cost:
-        min_cost = cost
-
-print(min_cost)
+def main():
+    for line in sys.stdin:
+        X_Y_Z = line.strip().split()
+        if X_Y_Z == ['0', '0', '0']:
+            break
+        X, Y, Z = map(int, X_Y_Z)
+        V = list(map(int, sys.stdin.readline().split()))
+        event_map = {}
+        for _ in range(Z):
+            Ni, Ei, Ai = map(int, sys.stdin.readline().split())
+            event_map[Ni] = (Ei, Ai)
+        
+        dp = [defaultdict(float) for _ in range(Y)]
+        dp[0][0] =
