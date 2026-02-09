@@ -1,16 +1,21 @@
-def main():
-    import sys
-    s = sys.stdin.readline().strip()
+def previous_permutation(s):
+    s = list(s)
     n = len(s)
-    # Initialize DP table where dp[i][j] indicates if s[i..j] is a palindrome
-    dp = [[0] * n for _ in range(n)]
-    for i in range(n):
-        dp[i][i] = 1
-    for length in range(2, n + 1):
-        for i in range(n - length + 1):
-            j = i + length - 1
-            if s[i] == s[j]:
-                if length == 2 or dp[i+1][j-1]:
-                    dp[i][j] = 1
-            else:
-                dp[i][j] = 0
+    
+    # Step 1: Find the largest index k such that s[k] > s[k+1]
+    k = n - 2
+    while k >= 0 and s[k] <= s[k + 1]:
+        k -= 1
+    
+    if k == -1:
+        return None  # No previous permutation exists
+    
+    # Step 2: Find the largest index j > k such that s[j] < s[k]
+    j = n - 1
+    while s[j] >= s[k]:
+        j -= 1
+    
+    # Step 3: Swap s[k] and s[j]
+    s[k], s[j] = s[j], s[k]
+    
+    # Step 4: Reverse the suffix st
