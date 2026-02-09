@@ -1,23 +1,17 @@
-def ceildiv(a, b):
-    if b == 0:
-        return 0 if a == 0 else float('inf')
-    return (a + b - 1) // b
-
 def putaway(A, B, T, X, Y, W, S):
-    eligible_weak = [False] * T
-    eligible_small = [False] * T
-
-    for i in range(T):
-        w = W[i]
-        s_val = S[i]
-        ew = False
+    if T != 2 or (A + B) != 2:
+        return -1  # according to problem constraints, but code is for subcase
+    
+    # Check each toy can be handled by at least one robot
+    for i in range(2):
+        can_weak = False
+        can_small = False
         if A > 0:
             for x in X:
-                if x > w:
-                    ew = True
+                if W[i] < x:
+                    can_weak = True
                     break
-        eligible_weak[i] = ew
-
-        es = False
         if B > 0:
-            for y in
+            for y in Y:
+                if S[i] < y:
+               
