@@ -1,14 +1,13 @@
-def hIndex(citations):
-    n = len(citations)
-    left, right = 0, n - 1
-    res = -1
-    while left <= right:
-        mid = (left + right) // 2
-        if citations[mid] >= (n - mid):
-            res = mid
-            right = mid - 1
-        else:
-            left = mid + 1
-    if res == -1:
-        return 0
-    return n - res
+from collections import Counter
+
+def canReorderDoubled(arr):
+    count = Counter(arr)
+    for x in sorted(arr, key=lambda x: abs(x)):
+        if count[x] == 0:
+            continue
+        required = 2 * x
+        if count[required] < count[x]:
+            return False
+        count[required] -= count[x]
+        count[x] = 0
+    return True
