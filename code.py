@@ -1,21 +1,17 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    N = int(input[ptr])
-    ptr += 1
-    Q = int(input[ptr])
-    ptr += 1
-
-    edges = []
-    for _ in range(N - 1):
-        u = int(input[ptr])
-        ptr += 1
-        v = int(input[ptr])
-        ptr += 1
-        s = int(input[ptr])
-        ptr += 1
-        edges.append((-s, u, v))  # Use negative to sort in ascending and reverse later
-
-    edges.sort()
-    edges = [(-e[0], e[1], e[2]) for e in edges]  # Convert back t
+t = int(input())
+for _ in range(t):
+    n, m = map(int, input().split())
+    day_max = {}
+    for _ in range(n):
+        d, b = map(int, input().split())
+        if d in day_max:
+            if b > day_max[d]:
+                day_max[d] = b
+        else:
+            day_max[d] = b
+    max_beauties = list(day_max.values())
+    if len(max_beauties) < 2:
+        print(0)
+    else:
+        sorted_max = sorted(max_beauties, reverse=True)
+        print(sorted_max[0] + sorted_max[1])
