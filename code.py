@@ -1,21 +1,17 @@
 import sys
-from sys import stdin
-from collections import deque
 
-def main():
-    n, m = map(int, stdin.readline().split())
-    forbidden = [set() for _ in range(n+1)]
-    for _ in range(m):
-        x, y = map(int, stdin.readline().split())
-        forbidden[x].add(y)
-        forbidden[y].add(x)
-    
-    remaining = set(range(1, n+1))
-    components = []
-    
-    while remaining:
-        u = remaining.pop()
-        component = 1
-        queue = deque([u])
-        while queue:
-            current =
+for line in sys.stdin:
+    line = line.strip()
+    if not line:
+        continue
+    parts = list(map(int, line.split()))
+    N = parts[0]
+    nums = parts[1:1+N]
+    evens = []
+    for num in reversed(nums):
+        if num % 2 == 0:
+            evens.append(str(num))
+    if not evens:
+        print("None")
+    else:
+        print(' '.join(evens))
