@@ -1,21 +1,18 @@
-import sys
-from collections import deque
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+current_sum = sum(abs(a[i] - a[i+1]) for i in range(n-1))
 
-def main():
-    n = int(sys.stdin.readline())
-    edges = []
-    for _ in range(n-1):
-        u, v = map(int, sys.stdin.readline().split())
-        edges.append((u, v))
-    
-    # Build adjacency list
-    adj = [[] for _ in range(n+1)]
-    for u, v in edges:
-        adj[u].append(v)
-        adj[v].append(u)
-    
-    # Find connected components using BFS
-    visited = [False] * (n + 1)
-    components = []
-    for i in range(1, n + 1):
-        if not visit
+for _ in range(k):
+    best_delta = 0
+    best_i = -1
+    best_j = -1
+    for i in range(n):
+        for j in range(i+1, n):
+            # Calculate affected pairs
+            affected = set()
+            if i > 0:
+                affected.add((i-1, i))
+            if i < n-1:
+                affected.add((i, i+1))
+            if j > 0:
+                affected.add((j-1
