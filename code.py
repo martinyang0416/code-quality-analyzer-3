@@ -1,13 +1,20 @@
-# Read the grid
-grid = [list(input().strip()) for _ in range(4)]
+n = int(input())
+winners = [int(input().strip()) for _ in range(n)]
 
-# Precompute all possible triplets where three consecutive cells can form a line
-triplets = [
-    # Horizontal triplets
-    [(0,0), (0,1), (0,2)], [(0,1), (0,2), (0,3)],
-    [(1,0), (1,1), (1,2)], [(1,1), (1,2), (1,3)],
-    [(2,0), (2,1), (2,2)], [(2,1), (2,2), (2,3)],
-    [(3,0), (3,1), (3,2)], [(3,1), (3,2), (3,3)],
-    # Vertical triplets
-    [(0,0), (1,0), (2,0)], [(1,0), (2,0), (3,0)],
-    [(0,1), (1,1), (2,1)], [(1,1), (2,1)
+current_players = [1, 2]
+spectator = 3
+valid = True
+
+for a in winners:
+    if a not in current_players:
+        valid = False
+        break
+    if current_players[0] == a:
+        other = current_players[1]
+    else:
+        other = current_players[0]
+    next_players = [a, spectator]
+    spectator = other
+    current_players = next_players
+
+print("YES" if valid else "NO")
