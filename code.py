@@ -1,21 +1,17 @@
-import sys
+n, s = map(int, input().split())
+a = list(map(int, input().split()))
+a.sort()
+k = n // 2
+cost = 0
 
-def main():
-    input = sys.stdin.read().split()
-    ptr = 0
-    T = int(input[ptr])
-    ptr += 1
-    for _ in range(T):
-        N, M, K = map(int, input[ptr:ptr+3])
-        ptr += 3
-        A = list(map(int, input[ptr:ptr+N]))
-        ptr += N
-        B = []
-        for _ in range(N):
-            row = list(map(int, input[ptr:ptr+M]))
-            B.append(row)
-            ptr += M
-        C = []
-        for _ in range(N):
-            row = list(map(int, input[ptr:ptr+M]))
-          
+# Adjust elements up to the median to be <= s
+for i in range(k + 1):
+    if a[i] > s:
+        cost += a[i] - s
+
+# Adjust elements from the median onwards to be >= s
+for i in range(k, n):
+    if a[i] < s:
+        cost += s - a[i]
+
+print(cost)
