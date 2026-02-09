@@ -1,11 +1,13 @@
 def solve(a):
-    binary = bin(a)[2:].zfill(6)
+    # Convert to binary with 6 bits, padding with leading zeros if necessary
+    bits = bin(a)[2:].zfill(6)
     product = 1
     for i in range(6):
-        if binary[i] == '1':
-            product *= (6 - i)  # positions counted from the right (starting at 1)
+        if bits[i] == '1':
+            # The position is i+1 since it starts from 1
+            product *= (i + 1)
     return product
 
-# Read input and print output
+# Read input and output
 a = int(input())
 print(solve(a))
