@@ -1,13 +1,26 @@
-def generate_states(quests):
-    states = {(0, 0): (0, [])}
-    for li, mi, wi in quests:
-        new_states = {}
-        for (d_ab, d_bc), (sum_total, path) in states.items():
-            # Option LM
-            new_d_ab_lm = d_ab + (li - mi)
-            new_d_bc_lm = d_bc + mi
-            new_sum_lm = sum_total + li + mi
-            new_path_lm = path + ['LM']
-            key_lm = (new_d_ab_lm, new_d_bc_lm)
-            if key_lm not in new_states or new_sum_lm > new_states[key_lm][0]:
-        
+import bisect
+from collections import defaultdict
+
+n, m, y0, y1 = map(int, input().split())
+mice = list(map(int, input().split()))
+cheeses = list(map(int, input().split()))
+mice.sort()
+cheeses.sort()
+
+dy = abs(y0 - y1)
+
+if m == 0:
+    print(n)
+    exit()
+
+unique = [[] for _ in range(m)]
+tie_groups = defaultdict(list)
+
+for x in mice:
+    j = bisect.bisect_left(cheeses, x)
+    candidates = []
+    if j > 0:
+        candidates.append(j-1)
+    if j < m:
+        candidates.append(j)
+    min_dist_sq = 
