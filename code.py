@@ -1,25 +1,21 @@
-import bisect
+import sys
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N, Q = int(input[idx]), int(input[idx+1])
-    idx +=2
-    s = input[idx]
-    idx +=1
-    spec = input[idx]
-    idx +=1
+    s = sys.stdin.readline().strip()
+    U = int(sys.stdin.readline())
+    updates = []
+    for _ in range(U):
+        p, c = sys.stdin.readline().split()
+        updates.append((int(p) - 1, c))  # Convert to 0-based index
 
-    # Parse L and R into positions
-    L = []
-    R = []
-    ptr = 0
-    for c in s:
-        if c == 'L':
-            L.append(ptr)
-            ptr +=1
-        else:
-            R.append(ptr)
-            ptr +=1
-    # The intervals are given as L and R in the string, which are in orde
+    target = ['b', 'e', 's', 's', 'i', 'e']
+    N = len(s)
+    s_list = list(s)
+
+    # Precompute initial prev_state and C
+    prev_state = [[0] * 6 for _ in range(N + 1)]
+    prev_state[0] = [0] * 6
+    current = [0] * 6
+
+    for i in range(N):
+      
