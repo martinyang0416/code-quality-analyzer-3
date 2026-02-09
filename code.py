@@ -1,14 +1,26 @@
+import heapq
+
 def main():
     import sys
-    n = int(sys.stdin.readline())
-    s = sys.stdin.readline().strip()
-    vowels = {'a', 'e', 'i', 'o', 'u'}
-    vowel_indices = []
-    for i, c in enumerate(s):
-        if c in vowels:
-            vowel_indices.append(i)
-    v = len(vowel_indices)
-    print(v * (v + 1) // 2)
-
-if __name__ == "__main__":
-    main()
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    n = int(data[idx])
+    idx += 1
+    m = int(data[idx])
+    idx += 1
+    
+    adj = [[] for _ in range(n+1)]  # 1-based indexing
+    
+    for _ in range(m):
+        u = int(data[idx])
+        idx += 1
+        v = int(data[idx])
+        idx += 1
+        w = int(data[idx])
+        idx += 1
+        adj[u].append((v, w))
+    
+    # Dijkstra's setup
+    INF = float('inf')
+    dist = [INF] * (
