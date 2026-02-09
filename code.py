@@ -1,24 +1,21 @@
-import sys
+def max_substring(s, target, q):
+    left = 0
+    max_len = 0
+    count = 0
+    for right in range(len(s)):
+        if s[right] != target:
+            count += 1
+        while count > q:
+            if s[left] != target:
+                count -= 1
+            left += 1
+        current = right - left + 1
+        if current > max_len:
+            max_len = current
+    return max_len
 
 def main():
-    n, m, k = map(int, sys.stdin.readline().split())
-    d = list(map(int, sys.stdin.readline().split()))
-    
-    start_count = 0
-    start_node = -1
-    max_d = 0
-    for i in range(n):
-        dist = d[i]
-        if dist == 0:
-            start_count += 1
-            start_node = i + 1
-        if dist > max_d:
-            max_d = dist
-    
-    if start_count != 1:
-        print(-1)
-        return
-    
-    # Check all distances 1 to max_d exist
-    possible = True
-    f
+    import sys
+    n, q = map(int, sys.stdin.readline().split())
+    s = sys.stdin.readline().strip()
+ 
