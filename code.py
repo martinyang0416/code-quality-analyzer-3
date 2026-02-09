@@ -1,13 +1,22 @@
-def countServers(grid):
-    if not grid:
-        return 0
-    rows = len(grid)
-    cols = len(grid[0])
-    row_counts = [sum(row) for row in grid]
-    col_counts = [sum(col) for col in zip(*grid)]
-    count = 0
-    for i in range(rows):
-        for j in range(cols):
-            if grid[i][j] == 1 and (row_counts[i] > 1 or col_counts[j] > 1):
-                count += 1
-    return count
+def fractionToDecimal(numerator: int, denominator: int) -> str:
+    if numerator == 0:
+        return "0"
+    
+    res = []
+    if (numerator < 0) ^ (denominator < 0):
+        res.append('-')
+    
+    numerator = abs(numerator)
+    denominator = abs(denominator)
+    
+    integer_part = numerator // denominator
+    remainder = numerator % denominator
+    res.append(str(integer_part))
+    
+    if remainder == 0:
+        return ''.join(res)
+    
+    res.append('.')
+    
+    remainder_map = {}
+    
