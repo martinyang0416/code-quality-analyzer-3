@@ -1,13 +1,16 @@
 n = int(input())
-s = list(map(int, input().split()))
-swaps = []
-for i in range(n):
-    for j in range(n - i - 1):
-        if s[j] > s[j + 1]:
-            # Swap the elements
-            s[j], s[j + 1] = s[j + 1], s[j]
-            # Record the swap using 1-based indices
-            swaps.append((j + 1, j + 2))
-# Print each swap
-for swap in swaps:
-    print(swap[0], swap[1])
+coins = [int(input()) for _ in range(n)]
+total = sum(coins)
+half = total // 2
+
+possible_sums = {0}
+for v in coins:
+    sums_to_add = list(possible_sums)
+    for s in sums_to_add:
+        new_sum = s + v
+        if new_sum <= half:
+            possible_sums.add(new_sum)
+
+max_sum = max(possible_sums)
+min_diff = total - 2 * max_sum
+print(min_diff)
