@@ -1,23 +1,18 @@
 def putaway(A, B, T, X, Y, W, S):
-    if A == 0 and B == 0:
-        return -1  # problem constraints say A+B >=1
-    
-    max_x = 0
-    if A > 0:
-        max_x = max(X)
-    max_y = 0
-    if B > 0:
-        max_y = max(Y)
-    
-    a_count = 0
-    b_count = 0
-    both_count = 0
-    
+    # Pre-check if all toys are assignable
+    maxWeakX = max(X) if A > 0 else -1
+    maxSmallY = max(Y) if B > 0 else -1
+
     for i in range(T):
-        can_weak = False
-        if A > 0 and W[i] < max_x:
-            can_weak = True
-        can_small = False
-        if B > 0 and S[i] < max_y:
-            can_small = True
-        if can_wea
+        w = W[i]
+        s = S[i]
+        can_weak = (A > 0 and w < maxWeakX)
+        can_small = (B > 0 and s < maxSmallY)
+        if not can_weak and not can_small:
+            return -1
+
+    # Sort robots and toys
+    sorted_weak = sorted(X)
+    sorted_small = sorted(Y)
+
+    # Sort toys by weight for weak processing
