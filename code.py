@@ -1,17 +1,11 @@
-class Solution:
-    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
-        n = len(matrix)
-        low = matrix[0][0]
-        high = matrix[-1][-1]
-        
-        def count_less_equal(target):
-            count = 0
-            col = n - 1  # Start from the last column
-            for row in matrix:
-                while col >= 0 and row[col] > target:
-                    col -= 1
-                count += col + 1
-            return count
-        
-        while low < high:
-      
+def findTargetSumWays(nums, S):
+    total = sum(nums)
+    if (total + S) % 2 != 0 or (total + S) < 0:
+        return 0
+    P = (total + S) // 2
+    dp = [0] * (P + 1)
+    dp[0] = 1
+    for num in nums:
+        for i in range(P, num - 1, -1):
+            dp[i] += dp[i - num]
+    return dp[P]
