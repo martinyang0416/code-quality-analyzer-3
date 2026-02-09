@@ -1,14 +1,21 @@
-from functools import cmp_to_key
+MOD = 10**9 + 7
 
-def largestNumber(nums):
-    strs = list(map(str, nums))
-    
-    def compare(a, b):
-        if a + b > b + a:
-            return -1
-        else:
-            return 1
-    
-    strs.sort(key=cmp_to_key(compare))
-    result = ''.join(strs)
-    return '0' if result[0] == '0' else result
+class Solution:
+    def numFactoredBinaryTrees(self, A: List[int]) -> int:
+        A.sort()
+        s = set(A)
+        dp = {x: 1 for x in A}
+        
+        for x in A:
+            for a in A:
+                if a > x:
+                    break
+                if x % a != 0:
+                    continue
+                b = x // a
+                if b not in s:
+                    continue
+                if a > b:
+                    continue
+                if a == b:
+       
