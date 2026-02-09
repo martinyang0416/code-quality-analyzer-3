@@ -1,22 +1,21 @@
-import bisect
+import sys
+from collections import defaultdict
+
+MOD = 10**9
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    T = int(input[ptr])
-    ptr += 1
+    T = int(sys.stdin.readline())
     for _ in range(T):
-        N = int(input[ptr])
-        ptr += 1
-        min_b = {}
-        for _ in range(N):
-            a = int(input[ptr])
-            b = int(input[ptr+1])
-            ptr +=2
-            if a in min_b:
-                if b < min_b[a]:
-                    min_b[a] = b
-            else:
-                min_b[a] = b
-        sorted_ab = sorted(min_b
+        N = int(sys.stdin.readline())
+        arr = list(map(int, sys.stdin.readline().split()))
+        freq = defaultdict(int)
+        freq[0] = 1
+        current = 0
+        count = 0
+        for num in arr:
+            current = (current + num) % MOD
+            count += freq[current]
+            freq[current] += 1
+        print(count)
+
+if __name__ == "__main__":
