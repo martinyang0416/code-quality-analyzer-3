@@ -1,22 +1,22 @@
-def minimal_games():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    t = int(data[0])
-    index = 1
-    for _ in range(t):
-        w = int(data[index])
-        l = int(data[index+1])
-        p = int(data[index+2])
-        q = int(data[index+3])
-        index +=4
-        
-        if p == q:
-            # Desired rate is 1
-            if l == 0:
-                print(0)
-            else:
-                print(-1)
+import heapq
+
+def main():
+    n, m = map(int, input().split())
+    adj = [[] for _ in range(n)]
+    for _ in range(m):
+        u, v, w = map(int, input().split())
+        adj[u].append((v, w))
+        adj[v].append((u, w))
+    s = int(input())
+    
+    INF = float('inf')
+    distance = [INF] * n
+    distance[s] = 0
+    heap = [(0, s)]
+    
+    while heap:
+        current_dist, u = heapq.heappop(heap)
+        if current_dist > distance[u]:
             continue
-        if p == 0:
-            if q != 
+        for v, w in adj[u]:
+        
