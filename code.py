@@ -1,15 +1,19 @@
 def main():
-    import sys
-    N = int(sys.stdin.readline())
-    result = []
-    for _ in range(N):
-        parts = list(map(int, sys.stdin.readline().split()))
-        a, b, c, d, e = parts
-        bits = []
-        # Process first three numbers (a, b, c)
-        for num in [a, b, c]:
-            # Convert each number to two bits (LSB first)
-            bits.append(num & 1)          # LSB
-            bits.append((num >> 1) & 1)   # MSB
-        # Process last two numbers (d, e)
-        for num i
+    s = input().strip()
+    n = len(s)
+    if n <= 1:
+        print("YES")
+        return
+    # Determine the direction between the first two characters
+    prev_dir = None
+    for i in range(1, n):
+        current_diff = ord(s[i]) - ord(s[i-1])
+        if current_diff == 0:
+            print("NO")
+            return
+        current_dir = current_diff > 0
+        if prev_dir is not None:
+            if current_dir == prev_dir:
+                print("NO")
+                return
+      
