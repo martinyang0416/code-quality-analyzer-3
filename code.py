@@ -1,19 +1,22 @@
-from collections import deque
-import sys
-
 def main():
-    r, c = map(int, sys.stdin.readline().split())
-    grid = []
-    for _ in range(r):
-        row = list(sys.stdin.readline().strip())
-        grid.append(row)
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    N, K = int(input[idx]), int(input[idx+1])
+    idx += 2
     
-    visited = [[False for _ in range(c)] for _ in range(r)]
-    count = 0
+    cuboids = []
+    x_coords = set()
+    y_coords = set()
+    z_coords = set()
     
-    for i in range(r):
-        for j in range(c):
-            if grid[i][j] == 'L' and not visited[i][j]:
-                # BFS to mark all connected land cells
-                queue = deque()
+    for _ in range(N):
+        x1 = int(input[idx])
+        y1 = int(input[idx+1])
+        z1 = int(input[idx+2])
+        x2 = int(input[idx+3])
+        y2 = int(input[idx+4])
+        z2 = int(input[idx+5])
+        idx += 6
         
+        cuboids.append( (x1, y1, z1, x2, y
