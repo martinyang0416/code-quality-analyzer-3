@@ -1,16 +1,17 @@
-import bisect
+def makesquare(matchsticks):
+    total = sum(matchsticks)
+    if total % 4 != 0:
+        return False
+    target = total // 4
+    matchsticks.sort(reverse=True)
+    if not matchsticks or matchsticks[0] > target:
+        return False
+    sides = [0] * 4
 
-def maxProfitAssignment(difficulty, profit, worker):
-    # Create a dictionary to map each difficulty to its maximum profit
-    difficulty_profit = {}
-    for d, p in zip(difficulty, profit):
-        if d not in difficulty_profit or p > difficulty_profit[d]:
-            difficulty_profit[d] = p
-    
-    # Sort the unique difficulties
-    sorted_diffs = sorted(difficulty_profit.keys())
-    
-    # Create the max profit array
-    max_profit = []
-    current_max = 0
-    for d in sorte
+    def backtrack(index):
+        if index == len(matchsticks):
+            return all(side == target for side in sides)
+        current = matchsticks[index]
+        seen = set()
+        for i in range(4):
+            if sides[i] + current > targ
