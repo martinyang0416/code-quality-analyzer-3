@@ -1,18 +1,15 @@
-import math
-
-def cross(o, a, b):
-    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
-
-def convex_hull(points):
-    points = sorted(points)
-    if len(points) <= 1:
-        return points
-    lower = []
-    for p in points:
-        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
-            lower.pop()
-        lower.append(p)
-    upper = []
-    for p in reversed(points):
-        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
-            upper.pop
+def main():
+    import sys
+    N = int(sys.stdin.readline())
+    output = []
+    for _ in range(N):
+        parts = list(map(int, sys.stdin.readline().split()))
+        a, b, c, d, e = parts
+        numbers = [a, b, c, d, e]
+        bits = []
+        for num in numbers:
+            # Convert number to 2-bit binary string, pad with leading zeros if needed
+            b_str = bin(num)[2:].zfill(2)
+            # Reverse the bits
+            reversed_b = b_str[::-1]
+            bits.append(reversed_
