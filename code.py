@@ -1,21 +1,21 @@
-import bisect
-from collections import defaultdict
-
 def main():
     import sys
-    input = sys.stdin.read
-    data = input().split()
-    n = int(data[0])
-    ptr = 1
+    input = sys.stdin.read().split()
+    idx = 0
+    t = int(input[idx])
+    idx += 1
+    for _ in range(t):
+        n = int(input[idx])
+        k = int(input[idx + 1])
+        idx += 2
+        arr = list(map(int, input[idx:idx + n]))
+        idx += n
 
-    # Initialize a dictionary to hold for each x its list of dates and prefix sums
-    warehouse = defaultdict(lambda: ([], []))  # [dates, sums]
-
-    for _ in range(n):
-        a = int(data[ptr])
-        d = int(data[ptr+1])
-        x = int(data[ptr+2])
-        ptr += 3
-
-        if a == 1 or a == 2:
-            delta = 1 if a == 1 
+        # Find the top k elements
+        top_k = sorted(arr, reverse=True)[:k]
+        top_set = set(top_k)
+        count = 0
+        for num in arr[:k]:
+            if num in top_set:
+                count += 1
+       
