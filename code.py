@@ -2,18 +2,17 @@ import sys
 from collections import deque
 
 def main():
-    while True:
-        line = sys.stdin.readline().strip()
-        while line == '':
-            line = sys.stdin.readline().strip()
-        n, m = map(int, line.split())
-        if n == 0 and m == 0:
-            break
-        grid = []
-        target = None
-        for i in range(m):
-            row = sys.stdin.readline().strip()
-            grid.append(row)
-            for j in range(n):
-                if row[j] == '&':
-                  
+    sys.setrecursionlimit(1 << 25)
+    N, M = map(int, sys.stdin.readline().split())
+    values = [0] * (N + 1)  # 1-based indexing
+    for i in range(1, N+1):
+        values[i] = int(sys.stdin.readline())
+    adj = [[] for _ in range(N+1)]
+    in_degree = [0] * (N+1)
+    for _ in range(M):
+        u, v = map(int, sys.stdin.readline().split())
+        adj[u].append(v)
+        in_degree[v] += 1
+
+    # Compute topological order
+    queue = dequ
