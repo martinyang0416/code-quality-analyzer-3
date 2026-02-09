@@ -1,20 +1,28 @@
-import numpy as np
+import bisect
 
 def main():
     import sys
-    N, K, T = map(int, sys.stdin.readline().split())
-    A = list(map(int, sys.stdin.readline().split()))
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx])
+    idx += 1
+    Q = int(input[idx])
+    idx += 1
+
+    S = input[idx]
+    idx += 1
+    special_str = input[idx]
+    idx += 1
+
+    # Parse L and R positions
+    Ls = []
+    Rs = []
+    for i in range(len(S)):
+        c = S[i]
+        pos = i + 1  # 1-based positions
+        if c == 'L':
+            Ls.append(pos)
+        else:
+            Rs.append(pos)
     
-    # Compute D array for each initial A_j
-    D = [0] * K
-    for j in range(K):
-        next_j = (j + 1) % K
-        D[j] = (A[next_j] - A[j]) % N
-    
-    # Compute sum_D[s] which is the sum of D[j] where A[j] == s
-    sum_D = [0] * N
-    for j in range(K):
-        s = A[j]
-        sum_D[s] += D[j]
-    
-    # Compute count array for each
+    # Special array (1-ba
