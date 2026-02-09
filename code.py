@@ -1,26 +1,21 @@
-def factorize(m):
-    factors = {}
-    i = 2
-    while i * i <= m:
-        while m % i == 0:
-            factors[i] = factors.get(i, 0) + 1
-            m //= i
-        i += 1
-    if m > 1:
-        factors[m] = 1
-    return factors
-
-def solve():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    n = int(data[0])
-    m = int(data[1])
-    a = list(map(int, data[2:2+n]))
+t = int(input())
+for _ in range(t):
+    s = input().strip()
+    k = int(input())
     
-    factors = factorize(m)
-    if not factors:
-        print("YES")
-        return
+    # Generate all unique substrings
+    substrs = set()
+    n = len(s)
+    for i in range(n):
+        for j in range(i + 1, n + 1):
+            substr = s[i:j]
+            substrs.add(substr)
     
-    primes = li
+    # Sort substrings in reverse lexicographical order
+    substr_list = sorted(substrs, reverse=True)
+    
+    # Concatenate all substrings
+    concatenated = ''.join(substr_list)
+    
+    # Get the k-th character
+ 
