@@ -1,11 +1,13 @@
-def consecutiveNumbersSum(N):
-    count = 0
-    k = 1
-    while True:
-        temp = N - k * (k - 1) // 2
-        if temp <= 0:
+from collections import Counter
+
+def findLeastNumOfUniqueInts(arr, k):
+    freq = Counter(arr)
+    sorted_freq = sorted(freq.values())
+    removed = 0
+    for f in sorted_freq:
+        if k >= f:
+            k -= f
+            removed += 1
+        else:
             break
-        if temp % k == 0:
-            count += 1
-        k += 1
-    return count
+    return len(freq) - removed
