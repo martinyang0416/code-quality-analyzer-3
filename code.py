@@ -1,23 +1,23 @@
-import sys
+import math
 
-for line in sys.stdin:
-    line = line.strip()
-    if not line:
-        continue
-    L = int(line)
-    if L == 0:
-        break
-    months = []
-    for _ in range(12):
-        while True:
-            m_line = sys.stdin.readline()
-            if not m_line:
-                break
-            m_line = m_line.strip()
-            if m_line:
-                break
-        m, n = map(int, m_line.split())
-        months.append((m, n))
-    savings = 0
-    result = 'NA'
-    for i in range(12):
+def get_divisors(n):
+    divisors = set()
+    for i in range(1, int(math.isqrt(n)) + 1):
+        if n % i == 0:
+            divisors.add(i)
+            divisors.add(n // i)
+    return divisors
+
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    N = int(input[0])
+    a = list(map(int, input[1:N+1]))
+    a_sorted = sorted(a)
+    
+    divisors = set()
+    for num in a_sorted:
+        divisors.update(get_divisors(num))
+    
+    # Add values around the first element
+    
