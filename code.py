@@ -1,21 +1,14 @@
-MOD = 10**9 + 7
-max_fact = 10**5
+import sys
 
-# Precompute factorial and inverse factorial arrays
-fact = [1] * (max_fact + 1)
-for i in range(1, max_fact + 1):
-    fact[i] = fact[i-1] * i % MOD
-
-inv_fact = [1] * (max_fact + 1)
-inv_fact[max_fact] = pow(fact[max_fact], MOD-2, MOD)
-for i in range(max_fact - 1, -1, -1):
-    inv_fact[i] = inv_fact[i+1] * (i+1) % MOD
-
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    T = int(input[ptr])
-    ptr +=1
-    for _ in range(T):
-        N, K 
+data = [line.strip() for line in sys.stdin if line.strip()]
+ptr = 0
+T = int(data[ptr])
+ptr += 1
+for _ in range(T):
+    N = int(data[ptr])
+    ptr += 1
+    names = data[ptr:ptr + N]
+    ptr += N
+    unique_sorted = sorted(set(names))
+    for name in unique_sorted:
+        print(name)
