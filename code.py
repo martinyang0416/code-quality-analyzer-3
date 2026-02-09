@@ -1,26 +1,24 @@
-def putaway(A, B, T, X, Y, W, S):
-    if A == 0:
-        max_x = -1
-    else:
-        max_x = max(X)
-    
-    if B == 0:
-        max_y = -1
-    else:
-        max_y = max(Y)
-    
-    W_only = 0
-    S_only = 0
-    Both = 0
+import bisect
 
-    for i in range(T):
-        w = W[i]
-        s = S[i]
-        handle_weak = (A > 0 and w < max_x)
-        handle_small = (B > 0 and s < max_y)
-        
-        if not handle_weak and not handle_small:
-            return -1
-        
-        if handle_weak and handle_small:
-  
+def putaway(A, B, T, X, Y, W, S):
+    sorted_X = sorted(X)
+    sorted_Y = sorted(Y)
+
+    only_weak = 0
+    only_small = 0
+    both = 0
+    weak_eligible = []
+    small_eligible = []
+
+    for w, s in zip(W, S):
+        can_weak = False
+        can_small = False
+
+        if A > 0:
+            pos = bisect.bisect_right(sorted_X, w)
+            if pos < A:
+                can_weak = True
+        if B > 0:
+            pos = bisect.bisect_right(sorted_Y, s)
+            if pos < B:
+     
