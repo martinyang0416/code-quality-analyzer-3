@@ -1,21 +1,14 @@
-def canConvert(s: str, t: str, k: int) -> bool:
-    if len(s) != len(t):
-        return False
-    
-    shifts = []
-    for sc, tc in zip(s, t):
-        diff = (ord(tc) - ord(sc)) % 26
-        if diff != 0:
-            shifts.append(diff)
-    
-    from collections import Counter
-    counts = Counter(shifts)
-    
-    for r in counts:
-        if r > k:
-            return False
-        available = (k - r) // 26 + 1
-        if counts[r] > available:
-            return False
-    
-    return True
+from functools import lru_cache
+
+def countArrangement(n: int) -> int:
+    @lru_cache(maxsize=None)
+    def backtrack(pos, used_mask):
+        if pos > n:
+            return 1
+        count = 0
+        for num in range(1, n+1):
+            if not (used_mask & (1 << (num-1))):
+                if num % pos == 0 or pos % num == 0:
+                    count += backtrack(pos + 1, used_mask | (1 << (num-1)))
+        return count
+    return backtrack(1, 0)
