@@ -1,19 +1,19 @@
-import sys
+l, r = map(int, input().split())
+n = int(input())
 
-def is_prime(n):
-    if n < 2:
-        return False
-    if n == 2:
-        return True
-    if n % 2 == 0:
-        return False
-    max_d = int(n ** 0.5) + 1
-    for i in range(3, max_d, 2):
-        if n % i == 0:
-            return False
-    return True
+s = ''
+for _ in range(n):
+    parts = input().split()
+    if parts[0] == 'append':
+        s += parts[1]
+    else:
+        a, b = parts[1], parts[2]
+        s = s.replace(a, b)
 
-t = int(sys.stdin.readline())
-for _ in range(t):
-    n = int(sys.stdin.readline())
-    print("WIN" if is_prime(n) else "LOSE")
+start = l - 1
+end = r
+if start < 0:
+    start = 0
+if end > len(s):
+    end = len(s)
+print(s[start:end])
