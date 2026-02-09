@@ -1,16 +1,25 @@
-from collections import defaultdict
+from collections import deque
 
-def find_lex_smallest_A(S):
-    # Calculate the required counts for each character in A
-    char_count = defaultdict(int)
-    for c in S:
-        char_count[c] += 1
-    required = {k: v // 2 for k, v in char_count.items()}
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    N = int(data[idx])
+    idx += 1
+    u = int(data[idx])
+    idx += 1
+    v = int(data[idx])
+    idx += 1
     
-    # Precompute suffix counts for each position
-    n = len(S)
-    suffix_counts = [defaultdict(int) for _ in range(n + 1)]
-    for i in range(n - 1, -1, -1):
-        # Copy previous counts
-        for key in suffix_counts[i + 1]:
-   
+    adj = [[] for _ in range(N+1)]
+    for _ in range(N-1):
+        a = int(data[idx])
+        idx += 1
+        b = int(data[idx])
+        idx += 1
+        adj[a].append(b)
+        adj[b].append(a)
+    
+    # Compute d_v and parent using BFS from v
+    d_v = [-1]
