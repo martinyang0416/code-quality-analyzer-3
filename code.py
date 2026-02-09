@@ -1,18 +1,27 @@
-n, k = map(int, input().split())
-a = list(map(int, input().split()))
-current_sum = sum(abs(a[i] - a[i+1]) for i in range(n-1))
+import math
 
-for _ in range(k):
-    best_delta = 0
-    best_i = -1
-    best_j = -1
-    for i in range(n):
-        for j in range(i+1, n):
-            # Calculate affected pairs
-            affected = set()
-            if i > 0:
-                affected.add((i-1, i))
-            if i < n-1:
-                affected.add((i, i+1))
-            if j > 0:
-                affected.add((j-1
+n, px, py = map(int, input().split())
+
+vertices = []
+dists = []
+
+for _ in range(n):
+    x, y = map(int, input().split())
+    dx = x - px
+    dy = y - py
+    dist = math.hypot(dx, dy)
+    vertices.append((x, y))
+    dists.append(dist)
+
+min_dist = min(dists)
+max_dist = max(dists)
+
+for i in range(n):
+    a = vertices[i]
+    b = vertices[(i + 1) % n]
+    ax, ay = a
+    bx, by = b
+    dx_edge = bx - ax
+    dy_edge = by - ay
+    len_ab_sq = dx_edge ** 2 + dy_edge ** 2
+    if len_ab_sq == 
