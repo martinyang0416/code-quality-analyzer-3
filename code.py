@@ -1,27 +1,26 @@
-import bisect
-
 def main():
     import sys
-    input = sys.stdin.read
-    data = input().split()
-    
+    input = sys.stdin.read().split()
     idx = 0
-    n = int(data[idx])
-    k = int(data[idx+1])
-    q = int(data[idx+2])
-    idx +=3
+    N = int(input[idx])
+    idx += 1
+    F = int(input[idx])
+    idx += 1
+    V = int(input[idx])
+    idx += 1
+    pos = []
+    for _ in range(N):
+        pos.append(int(input[idx]))
+        idx += 1
+    pos.sort()
     
-    MAX = 200000
-    diff = [0] * (MAX + 2)  # 0 to MAX+1
-    
-    for _ in range(n):
-        l = int(data[idx])
-        r = int(data[idx+1])
-        idx +=2
-        diff[l] += 1
-        if r + 1 <= MAX:
-            diff[r + 1] -= 1
-    
-    current = 0
-    freq = [0] * (MAX + 1)  # 1 to MAX
+    if N == 0:
+        print(0)
+        return
+
+    dp = [float('inf')] * (N + 1)
+    dp[0] = 0
+    for i in range(1, N + 1):
+        for j in range(i):
+            cost = F + (pos[i-1] - pos[j]) * V
     
