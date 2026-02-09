@@ -1,17 +1,18 @@
-n, s = map(int, input().split())
-a = list(map(int, input().split()))
-a.sort()
-k = n // 2
-cost = 0
+n = int(input())
+s = input().strip()
 
-# Adjust elements up to the median to be <= s
-for i in range(k + 1):
-    if a[i] > s:
-        cost += a[i] - s
+zeros = s.count('0')
+ones = len(s) - zeros
 
-# Adjust elements from the median onwards to be >= s
-for i in range(k, n):
-    if a[i] < s:
-        cost += s - a[i]
-
-print(cost)
+if zeros != ones:
+    print(1)
+    print(s)
+else:
+    for i in range(1, len(s)):
+        s1 = s[:i]
+        z1 = s1.count('0')
+        o1 = i - z1
+        if z1 != o1:
+            print(2)
+            print(f"{s1} {s[i:]}")
+            break
