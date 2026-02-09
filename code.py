@@ -1,19 +1,20 @@
-import sys
+n = int(input())
 
-def main():
-    n = int(sys.stdin.readline())
-    objects = []
-    for _ in range(n):
-        parent, typ = map(int, sys.stdin.readline().split())
-        objects.append((parent, typ))
-    
-    # Precompute type0_parent and part_leader
-    type0_parent = [-1] * (n + 1)
-    part_leader = [0] * (n + 1)
-    for i in range(1, n + 1):
-        parent, typ = objects[i-1]
-        if parent != -1:
-            if typ == 0:
-                type0_parent[i] = parent
-            else:
-            
+if n == 1:
+    print(2)
+else:
+    primes = [2]
+    candidate = 3
+    while len(primes) < n:
+        is_prime = True
+        sqrt_m = int(candidate ** 0.5) + 1
+        for p in primes:
+            if p > sqrt_m:
+                break
+            if candidate % p == 0:
+                is_prime = False
+                break
+        if is_prime:
+            primes.append(candidate)
+        candidate += 2
+    print(primes[-1])
