@@ -1,3 +1,6 @@
 s = input().strip()
-total = sum(int(c) for c in s)
-print("Yes" if total % 2 == 1 else "No")
+digits = s[1:]  # Extract the 6 digits after 'A'
+first_two = int(digits[:2])
+has_zero = '0' in digits
+result = first_two - 1 if has_zero else first_two
+print(result)
