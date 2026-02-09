@@ -1,23 +1,21 @@
-import bisect
-
 def main():
     import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    idx +=1
-    a = list(map(int, input[idx:idx+N]))
-    idx +=N
-    S = sorted(a)
-    prefix = [0]*(N+1)
-    for i in range(N):
-        prefix[i+1] = prefix[i] + S[i]
-    T = 0
-    for i in range(N):
-        T += S[i] * (i+1)
-    Q = int(input[idx])
-    idx +=1
-    for _ in range(Q):
-        i = int(input[idx])-1  # converting to 0-based
-        j = int(input[idx+1])
-        idx +=
+    s = sys.stdin.readline().strip()
+    target = list("bessie")
+    n = len(s)
+    if n < 6:
+        print(0)
+        return
+
+    total = 0
+    pos = [-1] * 6  # pos[i] is the current index for the ith character of target
+    current_start = -1
+
+    for i in range(n):
+        c = s[i]
+        # Iterate backwards to prevent overwriting
+        for j in range(5, -1, -1):
+            if c == target[j]:
+                if j == 0:
+                    pos[0] = i
+           
