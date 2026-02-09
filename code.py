@@ -1,25 +1,14 @@
-MOD = 10**9 + 7
+from functools import lru_cache
 
-def sumSubarrayMins(A):
-    n = len(A)
-    PLE = [-1] * n
-    NLE = [n] * n
-    stack = []
-    
-    for i in range(n):
-        while stack and A[stack[-1]] >= A[i]:
-            stack.pop()
-        if stack:
-            PLE[i] = stack[-1]
-        stack.append(i)
-    
-    stack = []
-    for i in range(n-1, -1, -1):
-        while stack and A[stack[-1]] > A[i]:
-            stack.pop()
-        if stack:
-            NLE[i] = stack[-1]
-        stack.append(i)
-    
-    total = 0
-    for
+class Solution:
+    def minDays(self, n: int) -> int:
+        @lru_cache(maxsize=None)
+        def dfs(remaining):
+            if remaining <= 1:
+                return remaining
+            option1 = 1 + dfs(remaining - 1)
+            option2 = (remaining % 2) + 1 + dfs(remaining // 2)
+            option3 = (remaining % 3) + 1 + dfs(remaining // 3)
+            return min(option1, option2, option3)
+        
+        return dfs(n)
