@@ -1,3 +1,2 @@
-import math
 a = int(input())
-print(math.isqrt(a))
+print((a - 1).bit_length())
