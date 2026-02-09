@@ -1,28 +1,16 @@
-import sys
+def largest_rectangle_area(heights):
+    stack = [-1]
+    max_area = 0
+    for i in range(len(heights)):
+        while stack[-1] != -1 and heights[i] < heights[stack[-1]]:
+            h = heights[stack.pop()]
+            w = i - stack[-1] - 1
+            max_area = max(max_area, h * w)
+        stack.append(i)
+    while stack[-1] != -1:
+        h = heights[stack.pop()]
+        w = len(heights) - stack[-1] - 1
+        max_area = max(max_area, h * w)
+    return max_area
 
-def comb(n, k):
-    if n < k or k < 0:
-        return 0
-    if k == 0:
-        return 1
-    numerator = 1
-    for i in range(k):
-        numerator *= (n - i)
-    denominator = 1
-    for i in range(1, k + 1):
-        denominator *= i
-    return numerator // denominator
-
-for line in sys.stdin:
-    line = line.strip()
-    if not line:
-        continue
-    n = int(line)
-    if n == 0:
-        break
-    if n < 16:
-        print(0)
-        continue
-    if n % 2 == 0:
-        m = n // 2
-   
+h, w = map(int, input().spl
