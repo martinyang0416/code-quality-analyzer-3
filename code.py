@@ -1,17 +1,14 @@
-def stoneGameIII(stoneValue):
-    n = len(stoneValue)
-    prefix = [0] * (n + 1)
-    for i in range(n):
-        prefix[i + 1] = prefix[i] + stoneValue[i]
-    
-    dp = [0] * (n + 4)  # Extra space to handle i+3 up to n
-    
-    for i in reversed(range(n)):
-        dp[i] = -float('inf')
-        for k in range(1, 4):
-            if i + k > n:
-                continue
-            current_sum = prefix[i + k] - prefix[i]
-            dp[i] = max(dp[i], current_sum - dp[i + k])
-    
-    result = dp[0]
+def nextGreaterElement(n):
+    digits = list(map(int, str(n)))
+    i = len(digits) - 2
+    while i >= 0 and digits[i] >= digits[i + 1]:
+        i -= 1
+    if i == -1:
+        return -1
+    j = len(digits) - 1
+    while j > i and digits[j] <= digits[i]:
+        j -= 1
+    digits[i], digits[j] = digits[j], digits[i]
+    digits[i + 1:] = reversed(digits[i + 1:])
+    num = int(''.join(map(str, digits)))
+    return num if num <= 0x7FFFFFFF else -1
