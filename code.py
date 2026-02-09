@@ -1,16 +1,18 @@
-def longest_absolute_path(s):
-    max_len = 0
-    stack = []
-    for line in s.split('\n'):
-        depth = line.count('\t')
-        name = line[depth:]
-        while len(stack) > depth:
-            stack.pop()
-        current_length = len(name)
-        if stack:
-            current_length += stack[-1] + 1  # add parent's length and slash
-        if '.' in name:
-            max_len = max(max_len, current_length)
+def trap(height):
+    if not height:
+        return 0
+    left = 0
+    right = len(height) - 1
+    left_max = right_max = result = 0
+    while left <= right:
+        if left_max <= right_max:
+            if height[left] > left_max:
+                left_max = height[left]
+            else:
+                result += left_max - height[left]
+            left += 1
         else:
-            stack.append(current_length)
-    return max_len
+            if height[right] > right_max:
+                right_max = height[right]
+            else:
+                result
