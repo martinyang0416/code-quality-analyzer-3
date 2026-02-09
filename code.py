@@ -1,20 +1,24 @@
-from collections import defaultdict
+import heapq
 
-# Read input values
-N, M, L = map(int, input().split())
-S = input().strip()
+h, w, K = map(int, input().split())
+grid = []
+s_pos = None
+e_pos = None
+a_positions = []
+for i in range(h):
+    row = list(input().strip().replace(' ', ''))
+    for j in range(w):
+        if row[j] == 's':
+            s_pos = (i, j)
+        elif row[j] == 'e':
+            e_pos = (i, j)
+        elif row[j] == 'a':
+            a_positions.append((i, j))
+    grid.append(row)
 
-# Precompute the sum of (start+1) for each substring of length L in S
-substring_sums = defaultdict(int)
-for i in range(N - L + 1):
-    substr = S[i:i+L]
-    substring_sums[substr] += (i + 1)
+m = len(a_positions)
+if m < K:
+    print(-1)
+    exit()
 
-# Calculate the results for each query substring
-total_sum = 0
-count = 0
-for _ in range(M):
-    T = input().strip()
-    if T in substring_sums:
-        total_sum += substring_sums[T]
-        cou
+a_index = {pos: idx for idx, pos in enumerate(a_posi
