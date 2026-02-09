@@ -1,17 +1,28 @@
 import sys
-from collections import defaultdict
 
-def main():
-    for line in sys.stdin:
-        X_Y_Z = line.strip().split()
-        if X_Y_Z == ['0', '0', '0']:
-            break
-        X, Y, Z = map(int, X_Y_Z)
-        V = list(map(int, sys.stdin.readline().split()))
-        event_map = {}
-        for _ in range(Z):
-            Ni, Ei, Ai = map(int, sys.stdin.readline().split())
-            event_map[Ni] = (Ei, Ai)
-        
-        dp = [defaultdict(float) for _ in range(Y)]
-        dp[0][0] =
+def comb(n, k):
+    if n < k or k < 0:
+        return 0
+    if k == 0:
+        return 1
+    numerator = 1
+    for i in range(k):
+        numerator *= (n - i)
+    denominator = 1
+    for i in range(1, k + 1):
+        denominator *= i
+    return numerator // denominator
+
+for line in sys.stdin:
+    line = line.strip()
+    if not line:
+        continue
+    n = int(line)
+    if n == 0:
+        break
+    if n < 16:
+        print(0)
+        continue
+    if n % 2 == 0:
+        m = n // 2
+   
