@@ -1,21 +1,12 @@
 import sys
-from collections import defaultdict
 
-MOD = 10**9
-
-def main():
-    T = int(sys.stdin.readline())
-    for _ in range(T):
-        N = int(sys.stdin.readline())
-        arr = list(map(int, sys.stdin.readline().split()))
-        freq = defaultdict(int)
-        freq[0] = 1
-        current = 0
-        count = 0
-        for num in arr:
-            current = (current + num) % MOD
-            count += freq[current]
-            freq[current] += 1
-        print(count)
-
-if __name__ == "__main__":
+data = list(map(int, sys.stdin.read().split()))
+ptr = 0
+T = data[ptr]
+ptr += 1
+for _ in range(T):
+    N = data[ptr]
+    ptr += 1
+    max_h = max(data[ptr:ptr+N])
+    ptr += N
+    print(max_h)
