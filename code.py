@@ -1,21 +1,20 @@
 import sys
 
-def is_convex(points):
-    cross = []
-    for i in range(4):
-        p = points[i]
-        q = points[(i+1)%4]
-        r = points[(i+2)%4]
-        dx1 = q[0] - p[0]
-        dy1 = q[1] - p[1]
-        dx2 = r[0] - q[0]
-        dy2 = r[1] - q[1]
-        cross_val = dx1 * dy2 - dy1 * dx2
-        cross.append(cross_val)
-    if all(c >= 0 for c in cross) or all(c <= 0 for c in cross):
-        return "YES"
-    else:
-        return "NO"
-
-for line in sys.stdin:
-    data = list(map(float, line
+def main():
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            continue
+        if line == '0':
+            break
+        N = int(line)
+        days = []
+        valid = True
+        # Read N days and check validity
+        for _ in range(N):
+            # Read next non-empty line
+            while True:
+                curr_line = sys.stdin.readline()
+                if not curr_line:
+                    break
+                curr_line = curr_lin
