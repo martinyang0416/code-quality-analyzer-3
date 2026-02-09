@@ -1,25 +1,14 @@
-n = int(input())
-s = list(input().strip())
+def main():
+    import sys
+    n = int(sys.stdin.readline())
+    s = sys.stdin.readline().strip()
+    vowels = {'a', 'e', 'i', 'o', 'u'}
+    vowel_indices = []
+    for i, c in enumerate(s):
+        if c in vowels:
+            vowel_indices.append(i)
+    v = len(vowel_indices)
+    print(v * (v + 1) // 2)
 
-carry = True
-count = 0
-pos = n - 1  # Start at the LSB (last character)
-
-while pos >= 0 and carry:
-    current = s[pos]
-    # Toggle the bit
-    if current == '1':
-        s[pos] = '0'
-    else:
-        s[pos] = '1'
-    count += 1
-
-    # Determine if carry continues
-    if current == '1':
-        carry = True
-    else:
-        carry = False
-
-    pos -= 1
-
-print(count)
+if __name__ == "__main__":
+    main()
