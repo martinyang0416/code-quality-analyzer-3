@@ -1,24 +1,20 @@
-import heapq
+import bisect
+import sys
 
 def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    idx = 0
-    N = int(data[idx])
-    Q = int(data[idx+1])
-    idx += 2
-    roadworks = []
-    for _ in range(N):
-        S = int(data[idx])
-        T = int(data[idx+1])
-        X = int(data[idx+2])
-        idx +=3
-        lower = S - X - 0.5
-        upper = T - X - 0.5
-        roadworks.append( (lower, upper, X) )
-    roadworks.sort()
-    ds = list(map(int, data[idx:idx+Q]))
-    heap = []
-    j = 0
- 
+    sys.setrecursionlimit(1 << 25)
+    N = int(sys.stdin.readline())
+    a = list(map(int, sys.stdin.readline().split()))
+    adj = [[] for _ in range(N+1)]
+    for _ in range(N-1):
+        u, v = map(int, sys.stdin.readline().split())
+        adj[u].append(v)
+        adj[v].append(u)
+    ans = [0] * (N + 1)
+    tails = []
+    stack = []
+    change_stack = []
+    stack.append((1, None, False))
+    while stack:
+        u, parent, visited = stack.pop()
+       
