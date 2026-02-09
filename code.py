@@ -1,21 +1,19 @@
-import sys
+def decode_binary_string(s):
+    result = []
+    for i in range(0, len(s), 4):
+        chunk = s[i:i+4]
+        low, high = 0, 16
+        for bit in chunk:
+            mid = (low + high) // 2
+            if bit == '0':
+                high = mid
+            else:
+                low = mid
+        result.append(chr(ord('a') + low))
+    return ''.join(result)
 
-def main():
-    input = sys.stdin.read().split()
-    T = int(input[0])
-    idx = 1
-    for _ in range(T):
-        S = int(input[idx])
-        SG = int(input[idx+1])
-        FG = int(input[idx+2])
-        D = int(input[idx+3])
-        T_val = int(input[idx+4])
-        idx +=5
-        
-        actual = S + (180 * D) / T_val
-        diff_sebi = abs(SG - actual)
-        diff_father = abs(FG - actual)
-        
-        if diff_sebi < diff_father:
-            print("SEBI")
-        elif diff
+T = int(input())
+for _ in range(T):
+    N = int(input())
+    S = input().strip()
+    print(decode_binary_string(S))
