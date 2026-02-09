@@ -1,18 +1,18 @@
-from collections import deque
+def generate_all_matchings():
+    elements = [1, 2, 3, 4, 5, 6]
+    
+    def helper(remaining):
+        if not remaining:
+            return [ [] ]
+        first = remaining[0]
+        results = []
+        for i in range(1, len(remaining)):
+            pair = (first, remaining[i])
+            new_remaining = remaining[1:i] + remaining[i+1:]
+            for sub in helper(new_remaining):
+                results.append([pair] + sub)
+        return results
+    
+    return helper(elements)
 
-class Edge:
-    def __init__(self, to, rev, capacity):
-        self.to = to
-        self.rev = rev
-        self.capacity = capacity
-
-class Dinic:
-    def __init__(self, n):
-        self.size = n
-        self.graph = [[] for _ in range(n+1)]  # 1-based indexing
-
-    def add_edge(self, fr, to, cap):
-        forward = Edge(to, len(self.graph[to]), cap)
-        backward = Edge(fr, len(self.graph[fr]), 0)
-        self.graph[fr].append(forward)
-        self.graph[to].app
+all_match
