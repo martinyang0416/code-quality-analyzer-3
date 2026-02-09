@@ -1,15 +1,21 @@
-from collections import defaultdict, deque
-
-class Solution:
-    def kSimilarity(self, A: str, B: str) -> int:
-        # Preprocess B to get indices for each character
-        b_indices = defaultdict(deque)
-        for idx, char in enumerate(B):
-            b_indices[char].append(idx)
-        
-        # Build the permutation array
-        permutation = []
-        for char in A:
-            permutation.append(b_indices[char].popleft())
-        
-        # Find cycles in the permutation and calculat
+def minNumber(num, k):
+    def count_inversions(s):
+        freq = [0] * 10
+        inversions = 0
+        for c in reversed(s):
+            d = int(c)
+            for i in range(d):
+                inversions += freq[i]
+            freq[d] += 1
+        return inversions
+    
+    inversions = count_inversions(num)
+    if k >= inversions:
+        return ''.join(sorted(num))
+    
+    num_list = list(num)
+    n = len(num_list)
+    for i in range(n):
+        if k <= 0:
+            break
+        j_ma
