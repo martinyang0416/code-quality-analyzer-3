@@ -1,16 +1,19 @@
-def maxProductPath(grid):
-    MOD = 10**9 + 7
-    rows = len(grid)
-    cols = len(grid[0]) if rows else 0
-    dp = [[(0, 0) for _ in range(cols)] for _ in range(rows)]
-    dp[0][0] = (grid[0][0], grid[0][0])
+def minCost(s, cost):
+    total = 0
+    prev_char = s[0]
+    sum_group = cost[0]
+    max_group = cost[0]
     
-    for i in range(rows):
-        for j in range(cols):
-            if i == 0 and j == 0:
-                continue
-            candidates = []
-            if i > 0:
-                up_max, up_min = dp[i-1][j]
-                candidates.append(up_max * grid[i][j])
-                candida
+    for i in range(1, len(s)):
+        if s[i] == prev_char:
+            sum_group += cost[i]
+            if cost[i] > max_group:
+                max_group = cost[i]
+        else:
+            total += sum_group - max_group
+            prev_char = s[i]
+            sum_group = cost[i]
+            max_group = cost[i]
+    
+    total += sum_group - max_group
+    return total
