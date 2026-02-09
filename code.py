@@ -1,17 +1,16 @@
-def findLUSlength(strs):
-    def is_subsequence(s, t):
-        it = iter(t)
-        return all(c in it for c in s)
+import bisect
+
+def maxProfitAssignment(difficulty, profit, worker):
+    # Create a dictionary to map each difficulty to its maximum profit
+    difficulty_profit = {}
+    for d, p in zip(difficulty, profit):
+        if d not in difficulty_profit or p > difficulty_profit[d]:
+            difficulty_profit[d] = p
     
-    max_length = -1
-    for i in range(len(strs)):
-        is_candidate = True
-        for j in range(len(strs)):
-            if i == j:
-                continue
-            if is_subsequence(strs[i], strs[j]):
-                is_candidate = False
-                break
-        if is_candidate:
-            current_length = len(strs[i])
-            if current_length > max_length:
+    # Sort the unique difficulties
+    sorted_diffs = sorted(difficulty_profit.keys())
+    
+    # Create the max profit array
+    max_profit = []
+    current_max = 0
+    for d in sorte
