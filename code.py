@@ -1,23 +1,26 @@
 def putaway(A, B, T, X, Y, W, S):
-    # Compute max_X and max_Y
-    max_X = -1
-    if A > 0:
-        max_X = max(X)
+    if A == 0:
+        max_x = -1
     else:
-        max_X = -1  # can_weak is False for all
+        max_x = max(X)
     
-    max_Y = -1
-    if B > 0:
-        max_Y = max(Y)
+    if B == 0:
+        max_y = -1
     else:
-        max_Y = -1  # can_small is False for all
+        max_y = max(Y)
     
-    # Count W_only, S_only, both
     W_only = 0
     S_only = 0
-    both = 0
+    Both = 0
+
     for i in range(T):
         w = W[i]
         s = S[i]
-        can_weak = (A > 0) and (w < max_X)
-        can_small = (B > 0) a
+        handle_weak = (A > 0 and w < max_x)
+        handle_small = (B > 0 and s < max_y)
+        
+        if not handle_weak and not handle_small:
+            return -1
+        
+        if handle_weak and handle_small:
+  
