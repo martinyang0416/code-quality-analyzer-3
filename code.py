@@ -1,15 +1,20 @@
+import numpy as np
+
 def main():
     import sys
     N, K, T = map(int, sys.stdin.readline().split())
-    initial_active = list(map(int, sys.stdin.readline().split()))
+    A = list(map(int, sys.stdin.readline().split()))
     
-    effective_T = T % N
+    # Compute D array for each initial A_j
+    D = [0] * K
+    for j in range(K):
+        next_j = (j + 1) % K
+        D[j] = (A[next_j] - A[j]) % N
     
-    # Initialize the positions array
-    pos = list(range(N))
+    # Compute sum_D[s] which is the sum of D[j] where A[j] == s
+    sum_D = [0] * N
+    for j in range(K):
+        s = A[j]
+        sum_D[s] += D[j]
     
-    # The initial current_cows is the cows at the initial active positions
-    current_cows = [pos[A] for A in initial_active]
-    
-    for step in range(1, effective_T + 1):
-        # Rotate the current_cows: [a0, a1, ..., aK-1] becomes [aK-1, a0, a1, 
+    # Compute count array for each
