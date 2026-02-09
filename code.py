@@ -1,14 +1,21 @@
-n, m, q = map(int, input().split())
-count1 = 0  # even i and even j
-count2 = 0  # odd i and odd j
+import sys
 
-for _ in range(q):
-    i, j = map(int, input().split())
-    if i % 2 == 0 and j % 2 == 0:
-        count1 += 1
-    else:
-        count2 += 1
-    if count1 == 0 or count2 == 0:
-        print("YES")
-    else:
-        print("NO")
+def solve():
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        n = int(input[idx])
+        k = int(input[idx + 1])
+        idx += 2
+        s = input[idx]
+        idx += 1
+        if n % k != 0:
+            print(-1)
+            continue
+        # Precompute prefix counts
+        prefix_counts = [[0] * 26 for _ in range(n + 1)]
+        for i in range(n):
+            for ch in range(26):
+                prefix_counts[i
