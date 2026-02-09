@@ -1,18 +1,20 @@
-n = int(input())
-intervals = []
-for _ in range(n):
-    s, e = map(int, input().split())
-    intervals.append((s, e))
+m, p, q, t = map(int, input().split())
 
-def calculate_coverage(intervals_list):
-    if not intervals_list:
-        return 0
-    sorted_intervals = sorted(intervals_list, key=lambda x: x[0])
-    merged = []
-    for interval in sorted_intervals:
-        if not merged:
-            merged.append(list(interval))
-        else:
-            last_start, last_end = merged[-1]
-            current_start, current_end = interval
-   
+total = t ** q
+
+if m > total:
+    print(-1)
+else:
+    packages = []
+    for i in range(m):
+        number = i
+        digits = []
+        for _ in range(q):
+            digits.append(number % t)
+            number = number // t
+        digits = digits[::-1]  # Reverse to get the correct order
+        truck_assignment = [d + 1 for d in digits]
+        packages.append(truck_assignment)
+    
+    for day in range(q):
+        line = ' '.join(map(str, [pkg[day] 
