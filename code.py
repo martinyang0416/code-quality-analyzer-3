@@ -1,14 +1,10 @@
-class Solution:
-    def rob(self, nums: list[int]) -> int:
-        def helper(subnums):
-            prev, curr = 0, 0
-            for num in subnums:
-                prev, curr = curr, max(curr, prev + num)
-            return curr
-        
-        if not nums:
-            return 0
-        n = len(nums)
-        if n == 1:
-            return nums[0]
-        return max(helper(nums[:-1]), helper(nums[1:]))
+def arrange_words(text: str) -> str:
+    words = text.split()
+    if not words:
+        return ""
+    indexed_words = [(len(word), idx, word) for idx, word in enumerate(words)]
+    sorted_words = [word for _, _, word in sorted(indexed_words, key=lambda x: (x[0], x[1]))]
+    processed = [sorted_words[0].capitalize()]
+    for word in sorted_words[1:]:
+        processed.append(word.lower())
+    return ' '.join(processed)
