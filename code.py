@@ -1,23 +1,3 @@
-def main():
-    import sys
-    letter = sys.stdin.readline().strip()
-    phrase = sys.stdin.readline().strip()
-    
-    p = len(phrase)
-    n = len(letter)
-    count = 0
-    
-    if p == 0 or n < p:
-        print(0)
-        return
-    
-    for i in range(n - p + 1):
-        valid = True
-        for j in range(p):
-            c = letter[i + j]
-            required = phrase[j]
-            if c != '$' and c != required:
-                valid = False
-                break
-        if valid:
-         
+Okay, so I have this problem where I need to find the area covered by buildings on a grid. Hmm. So the buildings form a connected region, but there might be empty spaces inside, like courtyards. The goal is to calculate the total area of the buildings. 
+
+Wait, wait. So each building is a single cell on the grid. The area is the total number of cells occupied by buildings. But wait, maybe the problem is about the actual outline or the connected region including the empty spaces? Or is it just the
