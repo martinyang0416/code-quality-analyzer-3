@@ -1,19 +1,22 @@
-from collections import deque
+import bisect
 
-class Edge:
-    def __init__(self, to, rev, capacity):
-        self.to = to
-        self.rev = rev
-        self.capacity = capacity
-
-class Dinic:
-    def __init__(self, n):
-        self.size = n
-        self.graph = [[] for _ in range(n)]
+def putaway(A, B, T, X, Y, W, S):
+    X_sorted = sorted(X)
+    Y_sorted = sorted(Y)
     
-    def add_edge(self, fr, to, cap):
-        forward = Edge(to, len(self.graph[to]), cap)
-        backward = Edge(fr, len(self.graph[fr]), 0)
-        self.graph[fr].append(forward)
-        self.graph[to].append(backward)
+    can_weak = [False] * T
+    can_small = [False] * T
     
+    for i in range(T):
+        w = W[i]
+        idx = bisect.bisect_right(X_sorted, w)
+        can_weak[i] = (idx < len(X_sorted))
+        
+        s = S[i]
+        idx = bisect.bisect_right(Y_sorted, s)
+        can_small[i] = (idx < len(Y_sorted))
+        
+        if not (can_weak[i] or can_small[i]):
+            return -1
+    
+    o
