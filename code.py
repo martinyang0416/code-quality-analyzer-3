@@ -1,22 +1,21 @@
-import math
+import sys
 
-def is_prime(n):
-    if n <= 1:
-        return False
-    elif n == 2:
-        return True
-    elif n % 2 == 0:
-        return False
-    sqrt_n = int(math.sqrt(n)) + 1
-    for i in range(3, sqrt_n, 2):
-        if n % i == 0:
-            return False
-    return True
-
-t = int(input())
-for _ in range(t):
-    num = int(input())
-    if is_prime(num):
-        print("PRIME")
-    else:
-        print("NOT PRIME")
+def main():
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        K = int(input[idx])
+        N = int(input[idx + 1])
+        idx += 2
+        
+        # Compute mod8 part
+        T8 = 8
+        m8, r8 = divmod(K, T8)
+        sum_p8 = sum(pow(i, N, 8) for i in range(1, T8 + 1))
+        sum_r8 = sum(pow(i, N, 8) for i in range(1, r8 + 1))
+        mod8 = (m8 * sum_p8 + sum_r8) % 8
+        
+        # Compute mod125 part
+    
