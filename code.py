@@ -1,17 +1,21 @@
-def min_changes(triplet, target_sum):
-    sum_orig = sum(triplet)
-    delta = target_sum - sum_orig
-    if delta == 0:
-        return 0
-    delta_i_min = [-d for d in triplet]
-    delta_i_max = [9 - d for d in triplet]
-    for k in [1, 2, 3]:
-        sorted_min = sorted(delta_i_min)
-        min_d = sum(sorted_min[:k])
-        sorted_max = sorted(delta_i_max, reverse=True)
-        max_d = sum(sorted_max[:k])
-        if min_d <= delta <= max_d:
-            return k
-    return 3
+import sys
+import string
+from collections import Counter
 
-ticket = input().s
+def process(s):
+    s = s.lower()
+    filtered = [c for c in s if c.isalpha()]
+    return Counter(filtered)
+
+def generate_pal(required):
+    first_half = []
+    middle = ''
+    for char in string.ascii_lowercase:
+        count = required[char]
+        if count == 0:
+            continue
+        pairs = count // 2
+        if pairs > 0:
+            first_half.append(char * pairs)
+        if count % 2 == 1 and not middle:
+            middle 
